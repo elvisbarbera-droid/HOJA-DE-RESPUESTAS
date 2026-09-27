@@ -93,7 +93,16 @@ sub{font-size:.72em;line-height:0}
 .lbl line{stroke:#10231a;stroke-width:1.4}
 .lbl circle{fill:#fff;stroke:#10231a;stroke-width:1.6}
 .lbl:hover text{fill:#0b5d3b}
-.zoomui{position:absolute;top:12px;right:12px;display:grid;gap:6px}
+.zoomui{position:absolute;top:12px;right:12px;display:grid;gap:6px;z-index:3}
+.stage.big{position:fixed;inset:0;height:auto;width:auto;border-radius:0;border:0;z-index:1000;padding-top:env(safe-area-inset-top,0px)}
+.stage:fullscreen{border-radius:0}
+.mini{position:absolute;right:12px;bottom:12px;width:min(340px,calc(100% - 24px));background:rgb(255 255 255 / .96);color:#10231a;border-radius:14px;box-shadow:0 4px 18px rgb(0 0 0 / .18);border-top:6px solid var(--c,#2b9348);padding:12px 14px;display:grid;gap:6px;font-size:.92rem;z-index:3}
+.mini h4{font-size:1.15rem}
+.mini .x{position:absolute;top:6px;right:8px;border:0;background:none;font-size:1.1rem;cursor:pointer;color:#10231a}
+.stage:not(.big) .mini{display:none}
+.stage.big .readout{bottom:auto;top:12px;right:70px}
+.stage.big .hint{display:none}
+@media (max-width:600px){.stage.big .mini{max-height:40%;overflow:auto}}
 .zoomui button{width:44px;height:44px;border-radius:12px;border:1px solid rgb(0 0 0 / .12);background:rgb(255 255 255 / .92);color:#10231a;font-size:1.3rem;font-weight:700;cursor:pointer;display:grid;place-items:center;box-shadow:0 2px 8px rgb(0 0 0 / .12)}
 .readout{position:absolute;left:12px;bottom:12px;right:70px;display:flex;flex-wrap:wrap;gap:6px;pointer-events:none}
 .readout span{background:rgb(16 35 26 / .82);color:#fff;border-radius:10px;padding:5px 10px;font-size:.84rem;font-weight:700;font-variant-numeric:tabular-nums}
@@ -270,7 +279,8 @@ footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:v
       <button class="tab" role="tab" data-tab="moleculas" style="--c:#6741d9"><i></i>ATP · NADH · Materia</button>
       <button class="tab" role="tab" data-tab="mitocondria" style="--c:#e8590c"><i></i>Mitocondria</button>
       <button class="tab q" role="tab" data-tab="preguntas" style="--c:#c2255c"><i></i>Preguntas</button>
-      <button class="tab q" role="tab" data-tab="ecosistema" style="--c:#8a5a2b"><i></i>Unir todo: ecosistema</button>
+      <button class="tab q" role="tab" data-tab="ecosistema" style="--c:#8a5a2b"><i></i>Unir todo: ecosistema terrestre</button>
+      <button class="tab q" role="tab" data-tab="acuatico" style="--c:#1971c2"><i></i>Unir todo: ecosistema acuático</button>
     </div>
   </nav>
 
@@ -279,7 +289,7 @@ footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:v
     <header>
       <span class="kicker">Simulación con zoom</span>
       <h2>De la planta al cloroplasto y la mitocondria</h2>
-      <p>Rueda del mouse o pellizca con dos dedos para acercar y alejar. Arrastra para moverte. Toca cualquier parte o etiqueta para ver su ficha. Los puntos de colores que se mueven son moléculas reales del proceso.</p>
+      <p>Rueda del mouse o pellizca con dos dedos para acercar y alejar. Arrastra para moverte. Toca cualquier parte o etiqueta para ver su ficha. Usa el botón <b>⛶</b> para agrandar la simulación a pantalla completa (ideal para proyectar). Los puntos de colores que se mueven son moléculas reales del proceso.</p>
     </header>
     <div class="explorer">
       <div style="display:grid;gap:12px">
@@ -294,7 +304,9 @@ footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:v
             <button id="zin" aria-label="Acercar">+</button>
             <button id="zout" aria-label="Alejar">−</button>
             <button id="zhome" aria-label="Volver a la planta completa" style="font-size:1rem">⌂</button>
+            <button id="zfull" aria-label="Agrandar a pantalla completa" title="Pantalla completa" style="font-size:1.15rem">⛶</button>
           </div>
+          <div class="mini" id="mini" hidden></div>
           <div class="readout"><span id="rLevel">Planta completa</span><span id="rZoom">Zoom ×1</span></div>
         </div>
         <div class="route" id="route" aria-label="Recorrido guiado"></div>
@@ -608,6 +620,60 @@ footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:v
         <h3>¿Estás de acuerdo?</h3>
         <p>Un compañero afirma: <b>“Las plantas hacen fotosíntesis de día y respiran solo de noche. Los animales, como el huemul, no dependen para nada de la luz del sol.”</b></p>
         <p>¿Estás de acuerdo con las dos partes de la frase? Justifica usando los <b>reactivos y productos</b> de la fotosíntesis y de la respiración celular, y el papel del <b>cloroplasto</b> y la <b>mitocondria</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ECOSISTEMA ACUATICO ============ -->
+  <section class="panel" id="acuatico" style="--c:#1971c2" hidden>
+    <header>
+      <span class="kicker">Actividad 3 · Unir todo el proceso</span>
+      <h2>El mar de Chile: algas que hacen fotosíntesis y peces que respiran</h2>
+      <p>En el océano ocurre lo mismo que en el bosque. Las algas y el fitoplancton tienen cloroplastos y fabrican glucosa y oxígeno. Los peces usan ese oxígeno en sus mitocondrias. Elige una palabra, toca el recuadro correcto y luego presiona <b>Revisar</b>.</p>
+    </header>
+    <div class="grid3">
+      <article class="card" style="--c:#2f9e44;display:grid;gap:8px"><span class="pill">Productores del mar</span><h3>Algas y fitoplancton</h3>
+        <p>El <b>huiro</b> y el <b>cochayuyo</b> de nuestras costas son algas grandes. El <b>fitoplancton</b> son algas microscópicas que flotan cerca de la superficie. Todos tienen <b>cloroplastos</b> y hacen fotosíntesis.</p>
+        <p class="note">El fitoplancton y las algas producen cerca de la <b>mitad del oxígeno</b> del planeta.</p></article>
+      <article class="card" style="--c:#1c7ed6;display:grid;gap:8px"><span class="pill">Luz y gases en el agua</span><h3>¿Cómo les llegan los reactivos?</h3>
+        <p>La <b>luz</b> solo alcanza los primeros metros del mar (hasta unos 200 m). Por eso las algas viven cerca de la superficie.</p>
+        <p>El <b>CO<sub>2</sub></b> y el <b>O<sub>2</sub></b> están <b>disueltos en el agua</b>. Las algas no tienen estomas: los gases entran directo a sus células.</p></article>
+      <article class="card" style="--c:#e8590c;display:grid;gap:8px"><span class="pill">Consumidores del mar</span><h3>Los peces respiran O<sub>2</sub> disuelto</h3>
+        <p>El pez hace pasar agua por sus <b>branquias</b>, que sacan el O<sub>2</sub> disuelto y lo llevan por la sangre hasta las <b>mitocondrias</b> de sus músculos.</p>
+        <p class="note">Allí se fabrica el ATP para nadar. El CO<sub>2</sub> que se forma vuelve al agua y lo usan las algas.</p></article>
+    </div>
+    <div class="bank" id="aqBank"></div>
+    <div class="plate eco"><svg id="aqSvg" viewBox="0 0 960 520" role="img" aria-label="Ecosistema marino con sol, huiro, fitoplancton, jurel y flujos de materia"></svg>
+      <div class="plate-cap"><span>Huiro y fitoplancton (cloroplastos + mitocondrias) · Jurel (pez: solo mitocondrias)</span><span id="aqMsg" style="font-weight:700">0 de 6 completados</span></div></div>
+    <div class="ctrl"><button class="btn solid" id="aqCheck" style="--c:#1971c2">Revisar</button><button class="btn" id="aqAnim">▶ Animar el ciclo</button><button class="btn" id="aqReset">Reiniciar</button></div>
+    <div class="scroll">
+      <table class="cmp">
+        <thead><tr><th></th><th style="color:#8a5a2b">Bosque (terrestre)</th><th style="color:#1971c2">Mar (acuático)</th></tr></thead>
+        <tbody>
+          <tr><th>Productor (fotosíntesis)</th><td>Coigüe y otras plantas</td><td>Huiro, cochayuyo y fitoplancton</td></tr>
+          <tr><th>Consumidor (respiración)</th><td>Huemul</td><td>Jurel y otros peces</td></tr>
+          <tr><th>¿Cómo entra el CO<sub>2</sub>?</th><td>Por los estomas de las hojas</td><td>Disuelto en el agua, directo a las células del alga</td></tr>
+          <tr><th>¿Cómo se obtiene el O<sub>2</sub>?</th><td>Pulmones (animal) desde el aire</td><td>Branquias (pez) desde el agua</td></tr>
+          <tr><th>Organelo que hace fotosíntesis</th><td colspan="2">Cloroplasto, en ambos</td></tr>
+          <tr><th>Organelo que fabrica ATP</th><td colspan="2">Mitocondria, en ambos (productores y consumidores)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid2">
+      <div class="card notebook" style="display:grid;gap:10px">
+        <h3>Preguntas para tu cuaderno</h3>
+        <ol class="qlist">
+          <li>¿Por qué el huiro y el fitoplancton viven cerca de la superficie y no en el fondo del océano profundo? Relaciónalo con la fase luminosa y su reactivo principal.</li>
+          <li>El jurel no respira aire. ¿De dónde saca el O<sub>2</sub>, a qué organelo llega y qué produce allí?</li>
+          <li>Haz una tabla: ¿qué productos del huiro usa el jurel? ¿Qué productos del jurel usa el huiro?</li>
+          <li>Una marea roja o la contaminación deja el agua turbia y la luz ya no pasa. ¿Qué fase de la fotosíntesis se detiene primero? ¿Qué pasaría después con el O<sub>2</sub> disuelto y con los peces?</li>
+        </ol>
+      </div>
+      <div class="analysis">
+        <span class="kicker" style="--c:var(--atp)">Pregunta de análisis · justifica tu respuesta</span>
+        <h3>¿Estás de acuerdo?</h3>
+        <p>Una persona afirma: <b>“El oxígeno que respiramos viene solo de los bosques. El mar no aporta nada, porque los peces gastan todo el oxígeno del agua.”</b></p>
+        <p>¿Estás de acuerdo? Justifica usando el <b>cloroplasto</b> de las algas y el fitoplancton, la <b>mitocondria</b> de los peces, y los <b>reactivos y productos</b> de la fotosíntesis y la respiración celular.</p>
       </div>
     </div>
   </section>
@@ -957,7 +1023,7 @@ new ResizeObserver(()=>{ if(!inited){ if(sizeStage()) home(false);} else sizeSta
 
 /* pointer interaction */
 const ptrs=new Map(); let down=null, moved=0, pinch=null;
-stage.addEventListener('pointerdown',e=>{ if(e.target.closest('.zoomui')) return; stage.setPointerCapture(e.pointerId); ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+stage.addEventListener('pointerdown',e=>{ if(e.target.closest('.zoomui,.mini')) return; stage.setPointerCapture(e.pointerId); ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
   if(anim){cancelAnimationFrame(anim);anim=null;}
   if(ptrs.size===1){down={x:e.clientX,y:e.clientY,part:e.target.closest('[data-part]')};moved=0;stage.classList.add('drag');$('#hint').hidden=true;}
   else{down=null;pinch=null;}
@@ -1001,7 +1067,19 @@ function showFicha(id){const p=PARTS[id]; if(!p) return;
    <p>${p.tx}</p><div class="rel"><b>Relación con la energía:</b> ${p.rel}</div>
    ${p.fly?`<button class="btn solid sm" data-fly="${id}">Acercar aquí</button>`:''}</div></div>
    <div class="card" style="display:grid;gap:8px"><b>Moléculas que se mueven en la simulación</b>${LEG}</div>`;
+  const mini=$('#mini'); mini.style.setProperty('--c',p.c);
+  mini.innerHTML=`<button class="x" aria-label="Cerrar ficha">✕</button><b style="font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:${p.c}">${p.tag}</b><h4>${p.t}</h4><p>${p.tx}</p><p><b>Energía:</b> ${p.rel}</p>`;
+  mini.hidden=false;
 }
+$('#mini').addEventListener('pointerdown',e=>e.stopPropagation());
+$('#mini').addEventListener('click',e=>{ if(e.target.closest('.x')) $('#mini').hidden=true; });
+/* pantalla completa */
+function setBig(on){ stage.classList.toggle('big',on); document.documentElement.style.overflow=on?'hidden':''; const b=$('#zfull'); b.textContent=on?'✕':'⛶'; b.setAttribute('aria-label',on?'Salir de pantalla completa':'Agrandar a pantalla completa'); b.title=on?'Salir de pantalla completa':'Pantalla completa'; requestAnimationFrame(sizeStage); stage.focus({preventScroll:true}); }
+$('#zfull').addEventListener('click',()=>{ const on=!stage.classList.contains('big');
+  if(on){ setBig(true); try{ const r=stage.requestFullscreen&&stage.requestFullscreen(); if(r&&r.catch) r.catch(()=>{}); }catch(e){} }
+  else { try{ if(document.fullscreenElement){ const r=document.exitFullscreen(); if(r&&r.catch) r.catch(()=>{}); } }catch(e){} setBig(false); } });
+document.addEventListener('fullscreenchange',()=>{ if(!document.fullscreenElement&&stage.classList.contains('big')) setBig(false); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&stage.classList.contains('big')&&!document.fullscreenElement) setBig(false); });
 $('#ficha').addEventListener('click',e=>{const b=e.target.closest('[data-fly]'); if(b) goPart(b.dataset.fly);});
 showFicha('planta');
 
@@ -1293,7 +1371,6 @@ setProj();
    ========================================================= */
 const WORDS=[['luz','Luz solar','#e9a800'],['agua','Agua (H₂O)','#1c7ed6'],['co2','CO₂','#5f6b76'],['o2','O₂','#e03131'],['glu','Glucosa','#c98f00'],['atp','ATP','#6741d9']];
 const BL=[{id:'A',ans:'luz',x:140,y:168},{id:'B',ans:'agua',x:190,y:445},{id:'C',ans:'co2',x:470,y:112},{id:'D',ans:'o2',x:470,y:218},{id:'E',ans:'glu',x:470,y:330},{id:'F',ans:'atp',x:880,y:112}];
-const fill={}; let sel=null;
 (function(){const svg=$('#ecoSvg'); addDefs(svg,`<marker id="arE" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="context-stroke"/></marker>
   <marker id="arE1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#e9a800"/></marker><marker id="arE2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#1c7ed6"/></marker><marker id="arE3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#5f6b76"/></marker><marker id="arE4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#e03131"/></marker><marker id="arE5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#c98f00"/></marker><marker id="arE6" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#6741d9"/></marker>
   <linearGradient id="esky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a5d8ff"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient>`);
@@ -1321,18 +1398,71 @@ const fill={}; let sel=null;
   s+=BL.map(b=>`<g class="blank" data-b="${b.id}" transform="translate(${b.x} ${b.y})" tabindex="0" role="button" aria-label="Recuadro ${b.id}"><rect x="-58" y="-19" width="116" height="38" rx="10"/><text class="q" text-anchor="middle" y="6">${b.id} · ?</text></g>`).join('');
   svg.insertAdjacentHTML('beforeend',s);
 })();
-function renderBank(){ $('#bank').innerHTML='<b style="margin-right:4px">Palabras:</b>'+WORDS.map(([id,t,c])=>`<button class="word${Object.values(fill).includes(id)?' used':''}" data-w="${id}" aria-pressed="${sel===id}" style="--c:${c}">${t}</button>`).join(''); }
-function renderBlanks(check){ BL.forEach(b=>{const g=$(`#ecoSvg [data-b="${b.id}"]`); const v=fill[b.id]; const w=WORDS.find(x=>x[0]===v);
-  const txt=$('text',g); txt.textContent=w?w[1]:b.id+' · ?'; txt.setAttribute('class',w?'':'q'); g.classList.toggle('filled',!!w); g.classList.remove('ok','bad'); if(check&&w) g.classList.add(v===b.ans?'ok':'bad');});
-  $('#ecoMsg').textContent=`${Object.keys(fill).length} de 6 completados`; }
-$('#bank').addEventListener('click',e=>{const b=e.target.closest('[data-w]'); if(!b) return; sel=sel===b.dataset.w?null:b.dataset.w; renderBank();});
-function placeAt(id){ if(sel){ for(const k in fill) if(fill[k]===sel) delete fill[k]; fill[id]=sel; sel=null; } else if(fill[id]) delete fill[id]; renderBank(); renderBlanks(false); }
-$('#ecoSvg').addEventListener('click',e=>{const g=e.target.closest('.blank'); if(g) placeAt(g.dataset.b);});
-$('#ecoSvg').addEventListener('keydown',e=>{const g=e.target.closest('.blank'); if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();placeAt(g.dataset.b);}});
-$('#ecoCheck').addEventListener('click',()=>{renderBlanks(true); const ok=BL.filter(b=>fill[b.id]===b.ans).length; $('#ecoMsg').textContent=ok===6?'¡Excelente! 6 de 6 correctos. Ahora anima el ciclo.':`${ok} de 6 correctos. Corrige los recuadros en rojo.`;});
-$('#ecoReset').addEventListener('click',()=>{for(const k in fill) delete fill[k]; sel=null; renderBank(); renderBlanks(false);});
-$('#ecoAnim').addEventListener('click',()=>{const g=$('#ecoParts'); const on=g.style.display==='none'; g.style.display=on?'':'none'; $('#ecoAnim').textContent=on?'■ Detener animación':'▶ Animar el ciclo';});
-renderBank(); renderBlanks(false);
+function ecoGame(pre,blanks,bank){
+  const fill={}; let sel=null; const svg=$('#'+pre+'Svg'), msg=$('#'+pre+'Msg');
+  const rBank=()=>{ bank.innerHTML='<b style="margin-right:4px">Palabras:</b>'+WORDS.map(([id,t,c])=>`<button class="word${Object.values(fill).includes(id)?' used':''}" data-w="${id}" aria-pressed="${sel===id}" style="--c:${c}">${t}</button>`).join(''); };
+  const rBl=check=>{ blanks.forEach(b=>{const g=svg.querySelector(`[data-b="${b.id}"]`); const v=fill[b.id]; const w=WORDS.find(x=>x[0]===v);
+    const txt=$('text',g); txt.textContent=w?w[1]:b.id+' · ?'; txt.setAttribute('class',w?'':'q'); g.classList.toggle('filled',!!w); g.classList.remove('ok','bad'); if(check&&w) g.classList.add(v===b.ans?'ok':'bad');});
+    msg.textContent=`${Object.keys(fill).length} de 6 completados`; };
+  const place=id=>{ if(sel){ for(const k in fill) if(fill[k]===sel) delete fill[k]; fill[id]=sel; sel=null; } else if(fill[id]) delete fill[id]; rBank(); rBl(false); };
+  bank.addEventListener('click',e=>{const b=e.target.closest('[data-w]'); if(!b) return; sel=sel===b.dataset.w?null:b.dataset.w; rBank();});
+  svg.addEventListener('click',e=>{const g=e.target.closest('.blank'); if(g) place(g.dataset.b);});
+  svg.addEventListener('keydown',e=>{const g=e.target.closest('.blank'); if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();place(g.dataset.b);}});
+  $('#'+pre+'Check').addEventListener('click',()=>{rBl(true); const ok=blanks.filter(b=>fill[b.id]===b.ans).length; msg.textContent=ok===6?'¡Excelente! 6 de 6 correctos. Ahora anima el ciclo.':`${ok} de 6 correctos. Corrige los recuadros en rojo.`;});
+  $('#'+pre+'Reset').addEventListener('click',()=>{for(const k in fill) delete fill[k]; sel=null; rBank(); rBl(false);});
+  $('#'+pre+'Anim').addEventListener('click',()=>{const g=$('#'+pre+'Parts'); const on=g.style.display==='none'; g.style.display=on?'':'none'; $('#'+pre+'Anim').textContent=on?'■ Detener animación':'▶ Animar el ciclo';});
+  rBank(); rBl(false);
+}
+ecoGame('eco',BL,$('#bank'));
+
+/* ---------- ECOSISTEMA ACUATICO ---------- */
+const AQB=[{id:'A',ans:'luz',x:150,y:150},{id:'B',ans:'agua',x:95,y:400},{id:'C',ans:'co2',x:480,y:150},{id:'D',ans:'o2',x:480,y:268},{id:'E',ans:'glu',x:480,y:420},{id:'F',ans:'atp',x:870,y:120}];
+(function(){const svg=$('#aqSvg');
+  const mk=(n,c)=>`<marker id="aqM${n}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="${c}"/></marker>`;
+  const col={A:'#e9a800',B:'#74c0fc',C:'#5f6b76',D:'#e03131',E:'#c98f00',F:'#6741d9'};
+  addDefs(svg,Object.keys(col).map((k,i)=>mk(i+1,col[k])).join('')+`<linearGradient id="aqW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4dabf7"/><stop offset=".45" stop-color="#1971c2"/><stop offset="1" stop-color="#0b2e55"/></linearGradient><linearGradient id="aqS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d0ebff"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient>`);
+  const P={A:'M110 70 C170 95 220 125 255 165',B:'M95 380 C140 350 190 320 228 300',C:'M650 285 C590 170 430 140 320 205',D:'M320 285 C420 300 540 305 620 300',E:'M320 400 C420 440 560 420 650 345',F:'M770 285 C800 255 825 225 845 195'};
+  const wave=Array.from({length:17},(_,i)=>`${i===0?'M':'Q'}${i*60-30} ${i%2?62:78} ${i*60} 70`).join(' ');
+  let s=`<rect width="960" height="80" fill="url(#aqS)"/><rect y="70" width="960" height="450" fill="url(#aqW)"/>
+  <path d="${wave} V90 H-30Z" fill="#74c0fc" opacity=".6"/>
+  <g><circle cx="70" cy="38" r="30" fill="#ffd43b"/><g stroke="#fab005" stroke-width="5" stroke-linecap="round">${Array.from({length:10},(_,i)=>`<line x1="70" y1="0" x2="70" y2="-8" transform="rotate(${i*36} 70 38) translate(0 -2)"/>`).join('')}</g></g>
+  <rect x="0" y="70" width="960" height="130" fill="#fff" opacity=".06"/>
+  <text x="20" y="215" ${F} font-size="12" font-weight="700" fill="#fff" opacity=".9">Zona con luz (0 – 200 m)</text>
+  <text x="940" y="455" text-anchor="end" ${F} font-size="12" font-weight="700" fill="#a5d8ff" opacity=".9">Zona oscura: casi sin luz</text>
+  <path d="M0 480 C120 465 220 490 340 478 C480 465 600 492 760 476 C860 468 920 480 960 474 V520 H0Z" fill="#c9a66b"/>
+  <g fill="#868e96">${[[80,490,22],[400,488,16],[720,492,20],[900,486,14]].map(([x,y,r])=>`<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.6}"/>`).join('')}</g>`;
+  // huiro (kelp)
+  let kelp='';
+  [[230,-1],[262,1],[292,-1]].forEach(([x,d],j)=>{ const top=110+j*20; kelp+=`<path d="M${x} 486 C${x+30*d} 420 ${x-30*d} 330 ${x+20*d} 250 C${x+40*d} 190 ${x} 150 ${x+10*d} ${top}" stroke="#6b5a1e" stroke-width="5" fill="none"/>`;
+    for(let y=top+30;y<470;y+=42){ const side=((y/42)|0)%2?1:-1; kelp+=`<path d="M${x} ${y} c${24*side} -8 ${40*side} 4 ${48*side} 22 c${-18*side} 4 ${-38*side} -4 ${-48*side} -22z" fill="#8f9c2e" stroke="#5c6b12" stroke-width="1.5"/>`; } });
+  s+=`<g>${kelp}<ellipse cx="256" cy="486" rx="44" ry="10" fill="#6b5a1e"/></g>
+  <g transform="translate(205 225)"><rect x="-4" y="-4" width="108" height="30" rx="15" fill="#fff" opacity=".95"/><ellipse cx="18" cy="11" rx="14" ry="9" fill="#6cc36b" stroke="#2b7a3d" stroke-width="2"/><rect x="40" y="3" width="28" height="15" rx="7.5" fill="#ffa94d" stroke="#d9480f" stroke-width="2"/><text x="76" y="16" ${F} font-size="11" font-weight="700" fill="#10231a">x2</text></g>
+  <text x="256" y="512" text-anchor="middle" ${F} font-size="14" font-weight="700" fill="#10231a">Huiro (alga)</text>`;
+  // fitoplancton
+  let seed=3; const rnd=()=>{seed=(seed*9301+49297)%233280;return seed/233280;};
+  let fito=''; for(let i=0;i<34;i++){const x=340+rnd()*560,y=92+rnd()*80; fito+=i%3?`<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${(2.5+rnd()*2.5).toFixed(1)}" fill="#8ce99a" stroke="#2b8a3e" stroke-width="1"/>`:`<rect x="${x.toFixed(0)}" y="${y.toFixed(0)}" width="9" height="4" rx="2" fill="#b2f2bb" stroke="#2b8a3e" stroke-width="1" transform="rotate(${(rnd()*180).toFixed(0)} ${x.toFixed(0)} ${y.toFixed(0)})"/>`;}
+  s+=`<g>${fito}</g><g transform="translate(640 98)"><rect x="-8" y="-15" width="190" height="24" rx="12" fill="#fff" opacity=".92"/><text x="87" y="2" text-anchor="middle" ${F} font-size="12" font-weight="700" fill="#2b7a3d">Fitoplancton (algas microscópicas)</text></g>`;
+  // jurel (fish)
+  s+=`<g transform="translate(710 320)">
+    <path d="M60 0 L110 -34 L100 0 L110 34Z" fill="#5c7cfa" stroke="#364fc7" stroke-width="3"/>
+    <ellipse cx="0" cy="0" rx="78" ry="34" fill="#748ffc" stroke="#364fc7" stroke-width="3"/>
+    <path d="M-70 4 C-20 16 30 14 70 2" stroke="#dbe4ff" stroke-width="3" fill="none"/>
+    <path d="M-10 -32 L10 -52 L30 -30Z" fill="#5c7cfa" stroke="#364fc7" stroke-width="2"/>
+    <path d="M-40 -22 C-30 -8 -30 8 -40 22" stroke="#e03131" stroke-width="4" fill="none"/>
+    <circle cx="-56" cy="-8" r="7" fill="#fff"/><circle cx="-58" cy="-8" r="3.5" fill="#212529"/>
+    <g transform="translate(-4 -8)"><rect x="-4" y="-4" width="64" height="26" rx="13" fill="#fff" opacity=".95"/><rect x="4" y="2" width="28" height="14" rx="7" fill="#ffa94d" stroke="#d9480f" stroke-width="2"/><text x="36" y="14" ${F} font-size="11" font-weight="700" fill="#10231a">x1</text></g>
+    <text x="-40" y="56" text-anchor="middle" ${F} font-size="12" font-weight="700" fill="#fff">branquias</text>
+    <text x="10" y="80" text-anchor="middle" ${F} font-size="14" font-weight="700" fill="#fff">Jurel (pez)</text></g>
+  <g transform="translate(862 175)"><path d="M6 -40 L-16 6 h14 l-8 34 l26 -46 h-14z" fill="#fcc419" stroke="#e67700" stroke-width="2"/></g>
+  <text x="862" y="238" text-anchor="middle" ${F} font-size="12" font-weight="700" fill="#fff">nadar, crecer</text>
+  ${[[300,120],[330,150],[240,90],[600,250],[640,230]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="5" fill="none" stroke="#e7f5ff" stroke-width="2" opacity=".8"/>`).join('')}
+  <g transform="translate(20 430)"><rect width="200" height="30" rx="10" fill="#fff" opacity=".9"/><text x="100" y="20" text-anchor="middle" ${F} font-size="12" font-weight="700" fill="#1971c2">H₂O de mar rodea al alga</text></g>`;
+  Object.keys(P).forEach((k,i)=>{ s+=`<path d="${P[k]}" stroke="${col[k]}" stroke-width="6" fill="none" stroke-linecap="round" marker-end="url(#aqM${i+1})" opacity=".95"/>`; });
+  s+=`<g id="aqParts" style="display:none">${particles([['mPhoton',P.A,2,1.6,[0,.7,1.4]],['mH2O',P.B,2.5,1.2,[0,1.2]],['mCO2',P.C,3,1.2,[0,1,2]],['mO2',P.D,3,1.2,[.5,1.5,2.5]],['mGlu',P.E,3,1.1,[0,1.5]],['mATP',P.F,2,1.1,[0,1]]])}</g>`;
+  s+=AQB.map(b=>`<g class="blank" data-b="${b.id}" transform="translate(${b.x} ${b.y})" tabindex="0" role="button" aria-label="Recuadro ${b.id}"><rect x="-58" y="-19" width="116" height="38" rx="10"/><text class="q" text-anchor="middle" y="6">${b.id} · ?</text></g>`).join('');
+  svg.insertAdjacentHTML('beforeend',s);
+})();
+ecoGame('aq',AQB,$('#aqBank'));
 
 if(reduced){ $$('svg').forEach(s=>{try{s.pauseAnimations();}catch(e){}}); }
 showTab((location.hash||'#explorador').slice(1),false);
