@@ -1,0 +1,1340 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atlas de la Energía Viva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#eef5ef; --surface:#ffffff; --surface2:#f5faf5; --ink:#132319; --ink2:#4a5f53; --line:#d2e2d6;
+  --leaf:#2b9348; --leaf-d:#12633a; --sun:#e9a800; --water:#1c7ed6; --o2:#0b98ab; --co2:#5f6b76;
+  --mito:#e8590c; --atp:#6741d9; --nad:#c2255c; --glu:#c98f00; --soil:#8a5a2b;
+  --plate:#fbfdf8; --plate-ink:#1b2a22; --plate-ink2:#51645a; --plate-line:#cfe0d2;
+  --shadow: 0 1px 2px rgb(19 35 25 / .06), 0 6px 22px rgb(19 35 25 / .07);
+  --display:'Bricolage Grotesque', 'Trebuchet MS', system-ui, sans-serif;
+  --body:'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#0c1611; --surface:#14221a; --surface2:#1a2b21; --ink:#e3f0e7; --ink2:#9bb3a4; --line:#2a3f33;
+    --leaf:#4cc06e; --leaf-d:#8fe0a6; --sun:#ffc933; --water:#5aa9f0; --o2:#3fc7d8; --co2:#a3adb6;
+    --mito:#ff8a4c; --atp:#a48bff; --nad:#f06595; --glu:#f0bf3a; --soil:#c08a55;
+    --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 8px 26px rgb(0 0 0 / .35);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0c1611; --surface:#14221a; --surface2:#1a2b21; --ink:#e3f0e7; --ink2:#9bb3a4; --line:#2a3f33;
+  --leaf:#4cc06e; --leaf-d:#8fe0a6; --sun:#ffc933; --water:#5aa9f0; --o2:#3fc7d8; --co2:#a3adb6;
+  --mito:#ff8a4c; --atp:#a48bff; --nad:#f06595; --glu:#f0bf3a; --soil:#c08a55;
+  --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 8px 26px rgb(0 0 0 / .35);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:0 72px}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.12;text-wrap:balance;margin:0}
+p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--water);outline-offset:2px;border-radius:6px}
+sub{font-size:.72em;line-height:0}
+
+/* HERO */
+.hero{padding-block:30px 18px;display:grid;gap:14px}
+.eyebrow{display:flex;flex-wrap:wrap;gap:8px;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--ink2)}
+.eyebrow span{padding:4px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.hero h1{font-size:clamp(2.1rem,5.6vw,3.9rem);font-weight:800;letter-spacing:-.02em}
+.hero h1 .l{color:var(--leaf)} .hero h1 .m{color:var(--mito)}
+.hero .lead{max-width:68ch;color:var(--ink2);font-size:1.06rem}
+.formula{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}
+.formula .f{flex:1 1 300px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow)}
+.formula .f b{display:block;font-family:var(--display);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
+.formula .f .eq{font-size:1.05rem;font-variant-numeric:tabular-nums}
+.f.fs b{color:var(--leaf)} .f.rc b{color:var(--mito)}
+
+/* TABS */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px}
+.tabs .row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;max-width:1180px;margin:0 auto}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px;font-weight:700;font-size:.92rem;cursor:pointer;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.tab i{width:10px;height:10px;border-radius:50%;background:var(--c);display:inline-block}
+.tab[aria-selected="true"]{background:var(--c);border-color:var(--c);color:#fff}
+.tab[aria-selected="true"] i{background:#fff}
+.tab.q{border-style:dashed}
+
+.panel{padding-block:26px 8px;display:grid;gap:22px}
+.panel > header{display:grid;gap:8px}
+.kicker{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c,var(--leaf))}
+.panel h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;letter-spacing:-.01em}
+.panel header p{max-width:72ch;color:var(--ink2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.plate{background:var(--plate);color:var(--plate-ink);border:1px solid var(--plate-line);border-radius:18px;overflow:hidden}
+.plate svg{display:block;width:100%;height:auto}
+.plate-cap{padding:10px 14px;font-size:.88rem;color:var(--plate-ink2);border-top:1px solid var(--plate-line);display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:9px 14px;font-weight:700;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.btn:hover{border-color:var(--ink2)}
+.btn.solid{background:var(--c,var(--leaf));border-color:var(--c,var(--leaf));color:#fff}
+.btn.sm{padding:6px 11px;font-size:.88rem;border-radius:10px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.grid2,.grid3{grid-template-columns:1fr}}
+.note{font-size:.9rem;color:var(--ink2)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:.8rem;font-weight:700;background:color-mix(in srgb,var(--c) 16%,transparent);color:var(--c)}
+
+/* EXPLORER */
+.explorer{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start}
+@media (max-width:940px){.explorer{grid-template-columns:1fr}}
+.stage{position:relative;height:clamp(380px,70vh,660px);border-radius:20px;overflow:hidden;background:#cdeafc;touch-action:none;cursor:grab;border:1px solid var(--line);box-shadow:var(--shadow);user-select:none;-webkit-user-select:none}
+.stage.drag{cursor:grabbing}
+.stage svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.stage [data-part]{cursor:pointer}
+.lbl text{font-family:var(--body);font-size:13px;font-weight:700;fill:#10231a;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+.lbl line{stroke:#10231a;stroke-width:1.4}
+.lbl circle{fill:#fff;stroke:#10231a;stroke-width:1.6}
+.lbl:hover text{fill:#0b5d3b}
+.zoomui{position:absolute;top:12px;right:12px;display:grid;gap:6px}
+.zoomui button{width:44px;height:44px;border-radius:12px;border:1px solid rgb(0 0 0 / .12);background:rgb(255 255 255 / .92);color:#10231a;font-size:1.3rem;font-weight:700;cursor:pointer;display:grid;place-items:center;box-shadow:0 2px 8px rgb(0 0 0 / .12)}
+.readout{position:absolute;left:12px;bottom:12px;right:70px;display:flex;flex-wrap:wrap;gap:6px;pointer-events:none}
+.readout span{background:rgb(16 35 26 / .82);color:#fff;border-radius:10px;padding:5px 10px;font-size:.84rem;font-weight:700;font-variant-numeric:tabular-nums}
+.hint{position:absolute;top:12px;left:12px;right:70px;background:rgb(255 255 255 / .92);color:#10231a;border-radius:12px;padding:8px 12px;font-size:.86rem;box-shadow:0 2px 8px rgb(0 0 0 / .1);max-width:430px}
+.route{display:flex;flex-wrap:wrap;gap:6px}
+.route button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-weight:700;font-size:.86rem;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.route button i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.route button b{font-variant-numeric:tabular-nums;color:var(--ink2);font-weight:700}
+.ficha{position:sticky;top:76px;display:grid;gap:12px}
+.ficha .card{padding:0;overflow:hidden}
+.ficha .band{height:10px;background:var(--c)}
+.ficha .in{padding:16px 18px;display:grid;gap:10px}
+.ficha h3{font-size:1.45rem}
+.ficha .size{font-size:.85rem;color:var(--ink2);font-variant-numeric:tabular-nums}
+.ficha .rel{font-size:.92rem;background:var(--surface2);border-radius:12px;padding:10px 12px;border:1px solid var(--line)}
+.legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font-size:.84rem}
+.legend div{display:flex;align-items:center;gap:8px}
+.legend svg{width:30px;height:20px;flex:0 0 auto}
+
+/* GLOSSARY */
+.gfilters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.gfilters button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-weight:700;font-size:.86rem;cursor:pointer}
+.gfilters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.gfilters input{flex:1 1 200px;min-width:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:8px 12px;font:inherit}
+.atlas{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;box-shadow:var(--shadow)}
+.term .art{background:color-mix(in srgb,var(--c) 17%,var(--surface));display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:3px solid var(--c)}
+.term .art svg{width:62px;height:62px;flex:0 0 auto}
+.term .art h3{font-size:1.2rem}
+.term .art small{display:block;font-family:var(--body);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;font-weight:700;color:color-mix(in srgb,var(--c) 70%,var(--ink))}
+.term .tx{padding:12px 14px 14px;display:grid;gap:8px;align-content:start;font-size:.95rem}
+.term .ex{font-size:.86rem;color:var(--ink2)}
+.term .go{justify-self:start;border:0;background:none;color:var(--c);font-weight:700;cursor:pointer;padding:0;font-size:.86rem;text-decoration:underline;text-underline-offset:3px}
+
+/* METABOLISM */
+.meta-eq{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:clamp(1.1rem,2.6vw,1.6rem);text-align:center}
+.meta-eq span{padding:6px 14px;border-radius:14px}
+.meta-eq .a{background:color-mix(in srgb,var(--leaf) 18%,transparent);color:var(--leaf)}
+.meta-eq .c{background:color-mix(in srgb,var(--mito) 18%,transparent);color:var(--mito)}
+.mcard{display:grid;gap:10px}
+.mcard h3{font-size:1.5rem}
+.mcard ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+.blk{transform-box:fill-box;transform-origin:center}
+@keyframes buildA{0%,12%{transform:translate(var(--fx),var(--fy))}55%,100%{transform:translate(0,0)}}
+@keyframes breakC{0%,30%{transform:translate(0,0) rotate(0)}75%,100%{transform:translate(var(--fx),var(--fy)) rotate(var(--r))}}
+@keyframes glow{0%,40%{opacity:0}60%{opacity:1}100%{opacity:0}}
+.anab .blk{animation:buildA 3.6s ease-in-out infinite alternate}
+.catab .blk{animation:breakC 3.6s ease-in-out infinite alternate}
+.catab .spark{animation:glow 3.6s ease-in-out infinite alternate}
+.anab .spark{animation:glow 3.6s ease-in-out infinite alternate-reverse}
+.sorter{display:grid;gap:12px}
+.sortlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.sitem{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:12px;display:grid;gap:10px}
+.sitem .bts{display:flex;gap:6px;flex-wrap:wrap}
+.sitem.ok{border-color:var(--leaf);background:color-mix(in srgb,var(--leaf) 10%,var(--surface))}
+.sitem.bad{border-color:#e03131;background:color-mix(in srgb,#e03131 9%,var(--surface))}
+.sitem .fb{font-size:.86rem;font-weight:700}
+.score{font-family:var(--display);font-weight:800;font-variant-numeric:tabular-nums}
+
+/* PROCESS BLOCKS */
+.rp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:520px){.rp{grid-template-columns:1fr}}
+.rp > div{border-radius:14px;padding:10px 12px;border:1px solid var(--line);background:var(--surface2)}
+.rp h4{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.rp .in h4{color:var(--water)} .rp .out h4{color:var(--mito)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-weight:700;font-size:.88rem;background:var(--surface);border:1px solid var(--line)}
+.chip i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.steps li{display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:start;padding:10px 12px;border-radius:14px;border:1px solid var(--line);background:var(--surface);cursor:pointer;transition:background .2s,border-color .2s}
+.steps li b.n{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--surface2);border:2px solid var(--c);font-family:var(--display);color:var(--c)}
+.steps li.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 12%,var(--surface))}
+.steps li.on b.n{background:var(--c);color:#fff}
+.steps li strong{display:block}
+.proc{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:940px){.proc{grid-template-columns:1fr}}
+.proc .side{display:grid;gap:12px}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px}
+.dim{opacity:.22;transition:opacity .35s}
+.lit{opacity:1;transition:opacity .35s}
+.misc{border-left:4px solid var(--sun);padding:10px 14px;background:color-mix(in srgb,var(--sun) 12%,var(--surface));border-radius:0 12px 12px 0;font-size:.95rem}
+table.cmp{width:100%;border-collapse:collapse;font-size:.94rem;min-width:560px}
+table.cmp th,table.cmp td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+table.cmp th{font-family:var(--display);font-size:.9rem}
+table.cmp thead th{background:var(--surface2)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+
+/* MOLECULES */
+.mol{display:grid;gap:12px}
+.mol h3{font-size:1.4rem}
+.state{font-family:var(--display);font-weight:800;font-size:1.15rem}
+
+/* MITO */
+.phases{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+@media (max-width:860px){.phases{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:460px){.phases{grid-template-columns:1fr}}
+.ph{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:10px 12px;cursor:pointer;text-align:left;display:grid;gap:4px;align-content:start}
+.ph small{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+.ph strong{font-family:var(--display);font-size:1.02rem}
+.ph .atpn{font-variant-numeric:tabular-nums;font-size:.84rem;color:var(--atp);font-weight:700}
+.ph.on{border-color:var(--mito);background:color-mix(in srgb,var(--mito) 12%,var(--surface))}
+.phdetail{display:grid;gap:10px}
+.counter{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.meter{flex:1 1 220px;height:16px;border-radius:999px;background:var(--surface2);border:1px solid var(--line);overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--atp),color-mix(in srgb,var(--atp) 60%,#fff));transition:width .6s}
+.counter b{font-family:var(--display);font-size:1.3rem;font-variant-numeric:tabular-nums;color:var(--atp)}
+
+/* CASES */
+.cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+@media (max-width:400px){.cases{grid-template-columns:1fr}}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:0;overflow:hidden;box-shadow:var(--shadow);display:grid;grid-template-rows:auto 1fr}
+.case .top{display:flex;gap:12px;align-items:center;padding:12px 14px;background:color-mix(in srgb,var(--c) 14%,var(--surface));border-bottom:3px solid var(--c)}
+.case .top svg{width:54px;height:54px;flex:0 0 auto}
+.case .top small{display:block;font-weight:700;font-size:.74rem;letter-spacing:.07em;text-transform:uppercase;color:color-mix(in srgb,var(--c) 70%,var(--ink))}
+.case .top h3{font-size:1.18rem}
+.case .bd{padding:12px 14px 16px;display:grid;gap:10px;align-content:start}
+.case ol{margin:0;padding-left:1.3em;display:grid;gap:6px}
+.case ol li::marker{font-weight:700;color:var(--c)}
+.case .tagrow{display:flex;gap:6px;flex-wrap:wrap}
+.proj .cases{grid-template-columns:1fr}
+.proj .case{font-size:1.25rem}
+.proj .case .top h3{font-size:1.7rem}
+.proj .case .top svg{width:80px;height:80px}
+.notebook{background:repeating-linear-gradient(var(--surface),var(--surface) 31px,color-mix(in srgb,var(--water) 22%,var(--surface)) 32px);border-left:4px solid #e03131}
+
+/* ECOSYSTEM */
+.bank{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.word{border:2px solid var(--c);background:var(--surface);color:var(--ink);border-radius:12px;padding:7px 14px;font-weight:800;cursor:pointer;font-family:var(--display);font-size:1rem}
+.word[aria-pressed="true"]{background:var(--c);color:#fff}
+.word.used{opacity:.35}
+.eco .blank{cursor:pointer}
+.eco .blank rect{fill:#fff;stroke:#10231a;stroke-width:2;stroke-dasharray:5 4}
+.eco .blank.filled rect{stroke-dasharray:none}
+.eco .blank.ok rect{fill:#d3f9d8;stroke:#2b8a3e;stroke-width:3}
+.eco .blank.bad rect{fill:#ffe3e3;stroke:#e03131;stroke-width:3}
+.eco .blank text{font-family:var(--display);font-weight:800;font-size:17px;fill:#10231a}
+.eco .blank .q{fill:#8a9a90}
+.qlist{margin:0;padding-left:1.4em;display:grid;gap:10px}
+.qlist li::marker{font-family:var(--display);font-weight:800;color:var(--leaf)}
+.analysis{border:2px solid var(--atp);border-radius:18px;padding:16px 18px;background:color-mix(in srgb,var(--atp) 8%,var(--surface));display:grid;gap:8px}
+.analysis h3{color:var(--atp)}
+
+.flow{stroke-dasharray:10 12;animation:flow 1.1s linear infinite}
+.flowS{stroke-dasharray:4 10;animation:flowS 1.4s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-44}}
+@keyframes flowS{to{stroke-dashoffset:-28}}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.12)}}
+footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:var(--ink2);font-size:.86rem;display:grid;gap:6px}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow"><span>Biología · 1° Medio</span><span>Unidad 3 · Materia y energía en los ecosistemas</span><span>Bases Curriculares Mineduc</span></div>
+    <h1>Atlas de la <span class="l">Energía</span> <span class="m">Viva</span></h1>
+    <p class="lead">Un recorrido visual desde la planta completa hasta el cloroplasto y la mitocondria. Acércate con el zoom, toca cada parte para ver su ficha y descubre cómo la fotosíntesis y la respiración celular se conectan en el ecosistema.</p>
+    <div class="formula">
+      <div class="f fs"><b>Fotosíntesis · cloroplasto</b><span class="eq">6 CO<sub>2</sub> + 6 H<sub>2</sub>O + luz → C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6 O<sub>2</sub></span></div>
+      <div class="f rc"><b>Respiración celular · mitocondria</b><span class="eq">C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6 O<sub>2</sub> → 6 CO<sub>2</sub> + 6 H<sub>2</sub>O + ATP</span></div>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="Secciones">
+    <div class="row" role="tablist">
+      <button class="tab" role="tab" data-tab="explorador" style="--c:#2b9348"><i></i>Explorador con zoom</button>
+      <button class="tab" role="tab" data-tab="glosario" style="--c:#1c7ed6"><i></i>Glosario atlas</button>
+      <button class="tab" role="tab" data-tab="metabolismo" style="--c:#0b98ab"><i></i>Metabolismo</button>
+      <button class="tab" role="tab" data-tab="fotosintesis" style="--c:#2f9e44"><i></i>Fotosíntesis</button>
+      <button class="tab" role="tab" data-tab="moleculas" style="--c:#6741d9"><i></i>ATP · NADH · Materia</button>
+      <button class="tab" role="tab" data-tab="mitocondria" style="--c:#e8590c"><i></i>Mitocondria</button>
+      <button class="tab q" role="tab" data-tab="preguntas" style="--c:#c2255c"><i></i>Preguntas</button>
+      <button class="tab q" role="tab" data-tab="ecosistema" style="--c:#8a5a2b"><i></i>Unir todo: ecosistema</button>
+    </div>
+  </nav>
+
+  <!-- ============ EXPLORADOR ============ -->
+  <section class="panel" id="explorador" style="--c:#2b9348">
+    <header>
+      <span class="kicker">Simulación con zoom</span>
+      <h2>De la planta al cloroplasto y la mitocondria</h2>
+      <p>Rueda del mouse o pellizca con dos dedos para acercar y alejar. Arrastra para moverte. Toca cualquier parte o etiqueta para ver su ficha. Los puntos de colores que se mueven son moléculas reales del proceso.</p>
+    </header>
+    <div class="explorer">
+      <div style="display:grid;gap:12px">
+        <div class="stage" id="stage" tabindex="0" aria-label="Simulación: usa + y − para zoom, flechas para moverte">
+          <svg id="world" xmlns="http://www.w3.org/2000/svg">
+            <defs id="wdefs"></defs>
+            <g id="cam"></g>
+            <g id="labels"></g>
+          </svg>
+          <div class="hint" id="hint">Toca la <b>lupa</b> sobre la hoja o usa el recorrido de abajo para viajar hacia adentro.</div>
+          <div class="zoomui">
+            <button id="zin" aria-label="Acercar">+</button>
+            <button id="zout" aria-label="Alejar">−</button>
+            <button id="zhome" aria-label="Volver a la planta completa" style="font-size:1rem">⌂</button>
+          </div>
+          <div class="readout"><span id="rLevel">Planta completa</span><span id="rZoom">Zoom ×1</span></div>
+        </div>
+        <div class="route" id="route" aria-label="Recorrido guiado"></div>
+      </div>
+      <aside class="ficha" id="ficha" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <!-- ============ GLOSARIO ============ -->
+  <section class="panel" id="glosario" style="--c:#1c7ed6" hidden>
+    <header>
+      <span class="kicker">Glosario visual tipo atlas</span>
+      <h2>Conceptos para entender la energía de la vida</h2>
+      <p>Cada ficha tiene un color según su tipo. Filtra por categoría o busca una palabra. Las fichas con “Ver en el explorador” te llevan a esa parte de la simulación.</p>
+    </header>
+    <div class="gfilters" id="gfilters">
+      <button aria-pressed="true" data-cat="todo">Todo</button>
+      <button aria-pressed="false" data-cat="Concepto">Conceptos</button>
+      <button aria-pressed="false" data-cat="Proceso">Procesos</button>
+      <button aria-pressed="false" data-cat="Estructura">Estructuras y organelos</button>
+      <button aria-pressed="false" data-cat="Molécula">Moléculas</button>
+      <input id="gsearch" type="search" placeholder="Buscar: estoma, ATP, glucosa…" aria-label="Buscar en el glosario">
+    </div>
+    <div class="atlas" id="atlas"></div>
+  </section>
+
+  <!-- ============ METABOLISMO ============ -->
+  <section class="panel" id="metabolismo" style="--c:#0b98ab" hidden>
+    <header>
+      <span class="kicker">Metabolismo</span>
+      <h2>Construir y desarmar: así funciona la vida</h2>
+      <p>El metabolismo es el conjunto de todas las transformaciones químicas que ocurren dentro de un ser vivo. Se divide en dos grandes tipos: las que construyen y las que desarman.</p>
+    </header>
+    <div class="meta-eq"><span style="color:var(--ink)">Metabolismo</span> = <span class="a">Anabolismo (construir)</span> + <span class="c">Catabolismo (desarmar)</span></div>
+    <div class="grid2">
+      <article class="card mcard" style="--c:var(--leaf)">
+        <span class="pill">Gasta energía</span>
+        <h3 style="color:var(--leaf)">Anabolismo: construir</h3>
+        <div class="plate anab">
+          <svg viewBox="0 0 440 200" role="img" aria-label="Piezas pequeñas se unen y forman una molécula grande">
+            <rect width="440" height="200" fill="#f1faf0"/>
+            <text x="20" y="28" font-family="Atkinson Hyperlegible, sans-serif" font-size="14" font-weight="700" fill="#2b7a3d">Piezas pequeñas</text>
+            <text x="420" y="28" text-anchor="end" font-family="Atkinson Hyperlegible, sans-serif" font-size="14" font-weight="700" fill="#2b7a3d">Molécula grande</text>
+            <g class="spark"><path d="M70 160 l10 -18 l-6 0 l8 -16" stroke="#e9a800" stroke-width="4" fill="none" stroke-linecap="round"/><text x="92" y="150" font-family="Atkinson Hyperlegible, sans-serif" font-size="13" font-weight="700" fill="#b07d00">entra energía</text></g>
+            <g transform="translate(250 60)">
+              <rect class="blk" style="--fx:-190px;--fy:10px" x="0" y="0" width="34" height="34" rx="6" fill="#51cf66" stroke="#2b8a3e" stroke-width="3"/>
+              <rect class="blk" style="--fx:-160px;--fy:70px" x="36" y="0" width="34" height="34" rx="6" fill="#94d82d" stroke="#5c940d" stroke-width="3"/>
+              <rect class="blk" style="--fx:-215px;--fy:60px" x="72" y="0" width="34" height="34" rx="6" fill="#51cf66" stroke="#2b8a3e" stroke-width="3"/>
+              <rect class="blk" style="--fx:-140px;--fy:-5px" x="18" y="36" width="34" height="34" rx="6" fill="#94d82d" stroke="#5c940d" stroke-width="3"/>
+              <rect class="blk" style="--fx:-205px;--fy:-10px" x="54" y="36" width="34" height="34" rx="6" fill="#51cf66" stroke="#2b8a3e" stroke-width="3"/>
+              <rect class="blk" style="--fx:-120px;--fy:40px" x="36" y="72" width="34" height="34" rx="6" fill="#94d82d" stroke="#5c940d" stroke-width="3"/>
+            </g>
+          </svg>
+        </div>
+        <p>Une moléculas <b>pequeñas y simples</b> para formar moléculas <b>grandes y complejas</b>. Para construir hay que <b>gastar energía</b>, igual que armar una casa de Lego requiere esfuerzo.</p>
+        <ul><li><b>Fotosíntesis:</b> la planta arma glucosa con CO<sub>2</sub> y agua.</li><li>Formar músculo o crecer.</li><li>Guardar glucosa como almidón (la papa).</li></ul>
+      </article>
+      <article class="card mcard" style="--c:var(--mito)">
+        <span class="pill">Libera energía</span>
+        <h3 style="color:var(--mito)">Catabolismo: desarmar</h3>
+        <div class="plate catab">
+          <svg viewBox="0 0 440 200" role="img" aria-label="Una molécula grande se rompe en piezas pequeñas y libera energía">
+            <rect width="440" height="200" fill="#fff5ec"/>
+            <text x="20" y="28" font-family="Atkinson Hyperlegible, sans-serif" font-size="14" font-weight="700" fill="#c24a0b">Molécula grande</text>
+            <text x="420" y="28" text-anchor="end" font-family="Atkinson Hyperlegible, sans-serif" font-size="14" font-weight="700" fill="#c24a0b">Piezas pequeñas</text>
+            <g transform="translate(60 60)">
+              <rect class="blk" style="--fx:220px;--fy:0px;--r:30deg" x="0" y="0" width="34" height="34" rx="6" fill="#ffa94d" stroke="#d9480f" stroke-width="3"/>
+              <rect class="blk" style="--fx:280px;--fy:40px;--r:-40deg" x="36" y="0" width="34" height="34" rx="6" fill="#ffd43b" stroke="#e67700" stroke-width="3"/>
+              <rect class="blk" style="--fx:200px;--fy:80px;--r:60deg" x="72" y="0" width="34" height="34" rx="6" fill="#ffa94d" stroke="#d9480f" stroke-width="3"/>
+              <rect class="blk" style="--fx:300px;--fy:-10px;--r:-20deg" x="18" y="36" width="34" height="34" rx="6" fill="#ffd43b" stroke="#e67700" stroke-width="3"/>
+              <rect class="blk" style="--fx:250px;--fy:60px;--r:45deg" x="54" y="36" width="34" height="34" rx="6" fill="#ffa94d" stroke="#d9480f" stroke-width="3"/>
+              <rect class="blk" style="--fx:320px;--fy:30px;--r:-60deg" x="36" y="72" width="34" height="34" rx="6" fill="#ffd43b" stroke="#e67700" stroke-width="3"/>
+            </g>
+            <g class="spark"><path d="M200 172 l10 -18 l-6 0 l8 -16" stroke="#e9a800" stroke-width="4" fill="none" stroke-linecap="round"/><text x="222" y="165" font-family="Atkinson Hyperlegible, sans-serif" font-size="13" font-weight="700" fill="#b07d00">sale energía (ATP)</text></g>
+          </svg>
+        </div>
+        <p>Rompe moléculas <b>grandes</b> en piezas <b>pequeñas</b>. Al desarmarlas se <b>libera la energía</b> que estaba guardada, y la célula la usa para vivir.</p>
+        <ul><li><b>Respiración celular:</b> la mitocondria desarma glucosa y obtiene ATP.</li><li>Digerir el pan en el estómago.</li><li>Una hoja seca que se descompone en el suelo.</li></ul>
+      </article>
+    </div>
+    <div class="card sorter" style="--c:#0b98ab">
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">
+        <h3>Clasifica: ¿construye o desarma?</h3>
+        <span class="score" id="mscore">0 / 8 correctas</span>
+      </div>
+      <div class="sortlist" id="sortlist"></div>
+      <div><button class="btn sm" id="mreset">Reiniciar</button></div>
+    </div>
+  </section>
+
+  <!-- ============ FOTOSINTESIS ============ -->
+  <section class="panel" id="fotosintesis" style="--c:#2f9e44" hidden>
+    <header>
+      <span class="kicker">Fotosíntesis · anabolismo</span>
+      <h2>La hoja: una fábrica que funciona con luz</h2>
+      <p>La fotosíntesis ocurre en los cloroplastos y tiene dos etapas conectadas: la <b>fase luminosa</b> (en los tilacoides, necesita luz) y la <b>fase no luminosa u oscura</b> (en el estroma, usa lo que fabricó la fase luminosa).</p>
+    </header>
+
+    <!-- ESTOMAS -->
+    <div class="proc">
+      <div class="plate">
+        <svg id="stomaSvg" viewBox="0 0 520 300" role="img" aria-label="Estoma que se abre y se cierra">
+          <rect width="520" height="300" fill="#eaf6e2"/>
+          <g id="stEpi"></g>
+          <g id="stomaG"></g>
+          <g id="stGas"></g>
+          <text x="16" y="26" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="18" fill="#1b4d2b">Estoma visto desde abajo de la hoja</text>
+          <text id="stState" x="16" y="286" font-family="Atkinson Hyperlegible, sans-serif" font-weight="700" font-size="15" fill="#1b4d2b">ABIERTO</text>
+        </svg>
+        <div class="plate-cap"><span>Células oclusivas (con forma de riñón) abren y cierran el poro.</span><span>Tamaño real ≈ 0,02–0,04 mm</span></div>
+      </div>
+      <div class="side">
+        <h3 style="font-size:1.5rem">Estomas: las puertas de la hoja</h3>
+        <p>Son pequeños poros, casi siempre en la cara de abajo de la hoja. Cada uno está rodeado por dos <b>células oclusivas</b> que se hinchan con agua para abrirse.</p>
+        <div class="rp">
+          <div class="in"><h4>Entra</h4><div class="chips"><span class="chip" style="--c:var(--co2)"><i></i>CO<sub>2</sub></span></div></div>
+          <div class="out"><h4>Sale</h4><div class="chips"><span class="chip" style="--c:var(--o2)"><i></i>O<sub>2</sub></span><span class="chip" style="--c:var(--water)"><i></i>Vapor de agua</span></div></div>
+        </div>
+        <p id="stText" class="note">Abierto (de día y con agua suficiente): entra el CO<sub>2</sub> que necesita la fase no luminosa y salen el O<sub>2</sub> y algo de vapor de agua.</p>
+        <div class="ctrl"><button class="btn solid" id="stToggle">Cerrar estoma</button></div>
+      </div>
+    </div>
+
+    <!-- FASE LUMINOSA -->
+    <div class="card" style="--c:#e9a800;display:grid;gap:14px">
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:end">
+        <div><span class="kicker" style="--c:#b07d00">Etapa 1 · en los tilacoides</span><h3 style="font-size:1.6rem">Fase luminosa</h3></div>
+        <div class="ctrl"><button class="btn sm" data-play="lz">▶ Reproducir pasos</button><button class="btn sm" data-all="lz">Ver todo</button></div>
+      </div>
+      <div class="proc">
+        <div class="plate"><svg id="lzSvg" viewBox="0 0 760 390" role="img" aria-label="Fase luminosa en la membrana del tilacoide"></svg>
+          <div class="plate-cap"><span>Membrana del tilacoide (dentro del cloroplasto)</span><span>Tilacoide ≈ 0,0005 mm de ancho</span></div></div>
+        <div class="side">
+          <div class="rp">
+            <div class="in"><h4>Reactivos (entran)</h4><div class="chips"><span class="chip" style="--c:var(--sun)"><i></i>Luz solar</span><span class="chip" style="--c:var(--water)"><i></i>Agua H<sub>2</sub>O</span><span class="chip" style="--c:#b197fc"><i></i>ADP + P</span><span class="chip" style="--c:#f783ac"><i></i>NADP⁺</span></div></div>
+            <div class="out"><h4>Productos (salen)</h4><div class="chips"><span class="chip" style="--c:var(--o2)"><i></i>Oxígeno O<sub>2</sub></span><span class="chip" style="--c:var(--atp)"><i></i>ATP</span><span class="chip" style="--c:var(--nad)"><i></i>NADPH</span></div></div>
+          </div>
+          <ol class="steps" id="lzSteps" style="--c:#e9a800">
+            <li data-s="1"><b class="n">1</b><span><strong>Atrapar la luz</strong>La clorofila de los tilacoides captura la energía del sol, como un panel solar.</span></li>
+            <li data-s="2"><b class="n">2</b><span><strong>Romper el agua</strong>Con esa energía se separa el agua. El oxígeno sobra y sale de la hoja: es el O<sub>2</sub> que respiramos.</span></li>
+            <li data-s="3"><b class="n">3</b><span><strong>Cargar pilas y camiones</strong>La energía se guarda en pilas (ATP) y el hidrógeno se sube a camiones (NADPH).</span></li>
+            <li data-s="4"><b class="n">4</b><span><strong>Enviar al estroma</strong>El ATP y el NADPH viajan al estroma para ser usados en la fase no luminosa.</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE OSCURA -->
+    <div class="card" style="--c:#2f9e44;display:grid;gap:14px">
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:end">
+        <div><span class="kicker">Etapa 2 · en el estroma</span><h3 style="font-size:1.6rem">Fase no luminosa (fase oscura)</h3></div>
+        <div class="ctrl"><button class="btn sm" data-play="dk">▶ Reproducir pasos</button><button class="btn sm" data-all="dk">Ver todo</button></div>
+      </div>
+      <div class="proc">
+        <div class="plate"><svg id="dkSvg" viewBox="0 0 760 390" role="img" aria-label="Fase no luminosa en el estroma"></svg>
+          <div class="plate-cap"><span>Estroma del cloroplasto · también llamado ciclo de Calvin</span><span>Cloroplasto ≈ 0,005 mm</span></div></div>
+        <div class="side">
+          <div class="rp">
+            <div class="in"><h4>Reactivos (entran)</h4><div class="chips"><span class="chip" style="--c:var(--co2)"><i></i>CO<sub>2</sub></span><span class="chip" style="--c:var(--atp)"><i></i>ATP</span><span class="chip" style="--c:var(--nad)"><i></i>NADPH</span></div></div>
+            <div class="out"><h4>Productos (salen)</h4><div class="chips"><span class="chip" style="--c:var(--glu)"><i></i>Glucosa C<sub>6</sub>H<sub>12</sub>O<sub>6</sub></span><span class="chip" style="--c:#b197fc"><i></i>ADP + P</span><span class="chip" style="--c:#f783ac"><i></i>NADP⁺</span></div></div>
+          </div>
+          <ol class="steps" id="dkSteps" style="--c:#2f9e44">
+            <li data-s="1"><b class="n">1</b><span><strong>Llega el CO<sub>2</sub></strong>El CO<sub>2</sub> del aire entra por los estomas y llega al estroma del cloroplasto.</span></li>
+            <li data-s="2"><b class="n">2</b><span><strong>Atrapar el carbono</strong>El CO<sub>2</sub> se engancha a una molécula que el cloroplasto ya tenía guardada.</span></li>
+            <li data-s="3"><b class="n">3</b><span><strong>Armar azúcar</strong>Con la energía del ATP y el hidrógeno del NADPH se arman azúcares pequeños.</span></li>
+            <li data-s="4"><b class="n">4</b><span><strong>Glucosa y reciclaje</strong>Se forma la glucosa. Las pilas descargadas (ADP y NADP⁺) vuelven a la fase luminosa para recargarse.</span></li>
+          </ol>
+          <p class="misc"><b>¡Ojo!</b> Se llama “oscura” porque no usa la luz directamente, pero ocurre <b>de día</b>: necesita el ATP y el NADPH que fabrica la fase luminosa.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll">
+      <table class="cmp">
+        <thead><tr><th></th><th style="color:#b07d00">Fase luminosa</th><th style="color:var(--leaf)">Fase no luminosa (oscura)</th></tr></thead>
+        <tbody>
+          <tr><th>¿Dónde?</th><td>Tilacoides (grana)</td><td>Estroma</td></tr>
+          <tr><th>¿Usa luz?</th><td>Sí, directamente</td><td>No directamente; depende de la fase luminosa</td></tr>
+          <tr><th>Reactivos</th><td>Luz, agua, ADP + P, NADP⁺</td><td>CO<sub>2</sub>, ATP, NADPH</td></tr>
+          <tr><th>Productos</th><td>O<sub>2</sub>, ATP, NADPH</td><td>Glucosa, ADP + P, NADP⁺</td></tr>
+          <tr><th>En una frase</th><td>Convierte la luz en energía química</td><td>Usa esa energía para fabricar azúcar con CO<sub>2</sub></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ MOLECULAS ============ -->
+  <section class="panel" id="moleculas" style="--c:#6741d9" hidden>
+    <header>
+      <span class="kicker">Moléculas clave</span>
+      <h2>Pilas, camiones y dos tipos de materia</h2>
+      <p>Para seguir la energía dentro de la célula necesitas conocer tres ideas: el ATP (la pila), el NADH y NADPH (los camiones) y la diferencia entre materia inorgánica y orgánica.</p>
+    </header>
+    <div class="grid2">
+      <article class="card mol" style="--c:var(--atp)">
+        <span class="pill">Molécula de energía</span>
+        <h3>ATP: la pila de la célula</h3>
+        <div class="plate"><svg id="atpSvg" viewBox="0 0 520 230" role="img" aria-label="Molécula de ATP con adenina, ribosa y tres fosfatos"></svg></div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span class="state" id="atpState" style="color:var(--atp)">ATP · pila cargada</span></div>
+        <div class="ctrl"><button class="btn solid" id="atpUse">Gastar energía</button><button class="btn" id="atpCharge">Recargar</button></div>
+        <p><b>ATP</b> = adenosín <b>tri</b>fosfato: tiene <b>3 fosfatos</b>. Cuando la célula suelta el último fosfato, se libera energía y queda <b>ADP</b> (2 fosfatos), una pila descargada. La mitocondria y el cloroplasto la vuelven a cargar.</p>
+      </article>
+      <article class="card mol" style="--c:var(--nad)">
+        <span class="pill">Transportador</span>
+        <h3>NADH y NADPH: los camiones</h3>
+        <div class="plate"><svg id="nadSvg" viewBox="0 0 520 230" role="img" aria-label="Camión que transporta electrones e hidrógeno"></svg></div>
+        <div><span class="state" id="nadState" style="color:var(--nad)">NAD⁺ · camión vacío</span></div>
+        <div class="ctrl"><button class="btn solid" id="nadLoad">Cargar</button><button class="btn" id="nadUnload">Descargar</button></div>
+        <p>Transportan <b>electrones e hidrógeno</b> (una carga con energía) de un lugar a otro. <b>NADPH</b> trabaja en la fotosíntesis (cloroplasto) y <b>NADH</b> en la respiración celular (mitocondria).</p>
+      </article>
+    </div>
+    <article class="card" style="display:grid;gap:14px">
+      <h3 style="font-size:1.5rem">Materia inorgánica y materia orgánica</h3>
+      <div class="plate"><svg id="orgSvg" viewBox="0 0 980 360" role="img" aria-label="Comparación de moléculas inorgánicas y orgánicas"></svg></div>
+      <div class="grid2">
+        <div style="--c:var(--water)"><span class="pill">Inorgánica</span><p style="margin-top:6px">Moléculas <b>simples</b>, sin cadenas de carbono unidas a hidrógeno. Existen también fuera de los seres vivos. Ej: agua, CO<sub>2</sub>, O<sub>2</sub>, sales minerales. El CO<sub>2</sub> tiene carbono, pero es inorgánico porque no forma cadenas C–H.</p></div>
+        <div style="--c:var(--glu)"><span class="pill">Orgánica</span><p style="margin-top:6px">Moléculas <b>grandes</b> con un esqueleto de <b>carbono e hidrógeno</b>, fabricadas por seres vivos. Guardan energía química. Ej: glucosa, almidón, proteínas, lípidos.</p></div>
+      </div>
+      <p class="misc"><b>La gran idea:</b> la fotosíntesis transforma materia <b>inorgánica → orgánica</b> (CO<sub>2</sub> y agua en glucosa). La respiración celular hace lo contrario: <b>orgánica → inorgánica</b> (glucosa en CO<sub>2</sub> y agua) y libera energía.</p>
+    </article>
+  </section>
+
+  <!-- ============ MITOCONDRIA ============ -->
+  <section class="panel" id="mitocondria" style="--c:#e8590c" hidden>
+    <header>
+      <span class="kicker">Respiración celular · catabolismo</span>
+      <h2>La mitocondria fabricando ATP en 5 fases</h2>
+      <p>Toca cada fase para ver dónde ocurre, qué entra y qué sale. El contador suma el ATP que se obtiene a partir de <b>una sola glucosa</b>.</p>
+    </header>
+    <div class="plate"><svg id="mitoSvg" viewBox="0 0 900 430" role="img" aria-label="Respiración celular en el citoplasma y la mitocondria"></svg></div>
+    <div class="phases" id="phases"></div>
+    <div class="grid2">
+      <div class="card phdetail" id="phdetail"></div>
+      <div class="card" style="display:grid;gap:12px">
+        <h3>ATP obtenido por cada glucosa</h3>
+        <div class="counter"><div class="meter"><i id="atpMeter"></i></div><b id="atpCount">2 ATP</b></div>
+        <p class="note">La mayor parte del ATP se fabrica en las crestas (fases 4 y 5), y para eso se necesita <b>oxígeno</b>. Por eso respiramos. Total aproximado: <b>36 ATP</b> por glucosa (algunos textos indican entre 30 y 38).</p>
+        <div class="ctrl"><button class="btn solid" id="mitoPlay">▶ Recorrer las 5 fases</button></div>
+      </div>
+    </div>
+    <div class="grid2">
+      <article class="card" style="--c:var(--mito);display:grid;gap:8px">
+        <span class="pill">Ser humano</span>
+        <h3>¿Por qué es importante para ti?</h3>
+        <ul style="margin:0;padding-left:1.1em;display:grid;gap:4px">
+          <li>El ATP mueve tus <b>músculos</b>: caminar, respirar, que el corazón lata.</li>
+          <li>Tu <b>cerebro</b> usa mucha glucosa y oxígeno para pensar.</li>
+          <li>Mantiene tu <b>temperatura</b> cerca de 36,5 °C.</li>
+          <li>Por eso <b>inhalas O<sub>2</sub></b> (llega a la mitocondria) y <b>exhalas CO<sub>2</sub></b> (sale del ciclo de Krebs).</li>
+        </ul>
+      </article>
+      <article class="card" style="--c:var(--leaf);display:grid;gap:8px">
+        <span class="pill">Planta</span>
+        <h3>¿Por qué la planta también respira?</h3>
+        <ul style="margin:0;padding-left:1.1em;display:grid;gap:4px">
+          <li>Las células vegetales tienen <b>cloroplastos y mitocondrias</b>.</li>
+          <li>Usa la glucosa que fabricó para crecer raíces, flores y frutos.</li>
+          <li>Las <b>raíces</b> no tienen luz: dependen totalmente de la respiración.</li>
+          <li>Respira <b>de día y de noche</b>. De día fabrica más O<sub>2</sub> del que usa.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ PREGUNTAS ============ -->
+  <section class="panel" id="preguntas" style="--c:#c2255c" hidden>
+    <header>
+      <span class="kicker">Actividad 1 · Resuelve en tu cuaderno</span>
+      <h2>Casos: ¿qué organelo está fallando?</h2>
+      <p>Lee cada caso y responde en tu cuaderno. Identifica el organelo o estructura que falla, la fase afectada (luminosa, no luminosa o de la respiración) y qué reactivo falta o qué producto deja de formarse.</p>
+    </header>
+    <div class="ctrl" style="align-items:center">
+      <button class="btn solid" id="projToggle" style="--c:#c2255c">Proyectar un caso a la vez</button>
+      <span id="projNav" hidden style="display:inline-flex;gap:8px;align-items:center"><button class="btn sm" id="projPrev">← Anterior</button><b id="projN" style="font-variant-numeric:tabular-nums">1 / 6</b><button class="btn sm" id="projNext">Siguiente →</button></span>
+    </div>
+    <div id="casesWrap"><div class="cases" id="cases"></div></div>
+    <div class="card notebook" style="display:grid;gap:10px">
+      <h3>Copia esta tabla en tu cuaderno</h3>
+      <div class="scroll" style="background:transparent">
+        <table class="cmp">
+          <thead><tr><th>Caso</th><th>Organelo o estructura que falla</th><th>Fase afectada</th><th>Reactivo que falta</th><th>Producto que no se forma</th></tr></thead>
+          <tbody><tr><td>1</td><td></td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td></td><td></td><td></td></tr><tr><td>3</td><td></td><td></td><td></td><td></td></tr><tr><td>4</td><td></td><td></td><td></td><td></td></tr><tr><td>5</td><td></td><td></td><td></td><td></td></tr><tr><td>6</td><td></td><td></td><td></td><td></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ECOSISTEMA ============ -->
+  <section class="panel" id="ecosistema" style="--c:#8a5a2b" hidden>
+    <header>
+      <span class="kicker">Actividad 2 · Unir todo el proceso</span>
+      <h2>Un bosque del sur de Chile: cloroplastos y mitocondrias conectados</h2>
+      <p>Elige una palabra y luego toca el recuadro donde corresponde. Cuando completes los 6 recuadros, presiona <b>Revisar</b>. Después anima el ciclo para ver cómo circula la materia.</p>
+    </header>
+    <div class="bank" id="bank"></div>
+    <div class="plate eco"><svg id="ecoSvg" viewBox="0 0 960 520" role="img" aria-label="Ecosistema con sol, coigüe, huemul y flujos de materia y energía"></svg>
+      <div class="plate-cap"><span>Coigüe (planta: cloroplastos + mitocondrias) · Huemul (animal: solo mitocondrias)</span><span id="ecoMsg" style="font-weight:700">0 de 6 completados</span></div></div>
+    <div class="ctrl"><button class="btn solid" id="ecoCheck" style="--c:#8a5a2b">Revisar</button><button class="btn" id="ecoAnim">▶ Animar el ciclo</button><button class="btn" id="ecoReset">Reiniciar</button></div>
+    <div class="grid2">
+      <div class="card notebook" style="display:grid;gap:10px">
+        <h3>Preguntas para tu cuaderno</h3>
+        <ol class="qlist">
+          <li>Sigue un átomo de carbono: parte en el CO<sub>2</sub> que exhala el huemul. ¿En qué organelo del coigüe entra, en qué molécula se convierte y cómo vuelve a ser CO<sub>2</sub>?</li>
+          <li>Haz una tabla con dos columnas. ¿Qué <b>productos</b> de la fotosíntesis son <b>reactivos</b> de la respiración celular? ¿Y al revés?</li>
+          <li>El coigüe tiene cloroplastos. ¿Por qué necesita además mitocondrias? Da un ejemplo de una parte de la planta que las use sin luz.</li>
+          <li>Si el bosque perdiera la mitad de sus árboles por un incendio, ¿qué pasaría con el alimento y el oxígeno disponibles para el huemul? Explica usando las palabras reactivo y producto.</li>
+        </ol>
+      </div>
+      <div class="analysis">
+        <span class="kicker" style="--c:var(--atp)">Pregunta de análisis · justifica tu respuesta</span>
+        <h3>¿Estás de acuerdo?</h3>
+        <p>Un compañero afirma: <b>“Las plantas hacen fotosíntesis de día y respiran solo de noche. Los animales, como el huemul, no dependen para nada de la luz del sol.”</b></p>
+        <p>¿Estás de acuerdo con las dos partes de la frase? Justifica usando los <b>reactivos y productos</b> de la fotosíntesis y de la respiración celular, y el papel del <b>cloroplasto</b> y la <b>mitocondria</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Material didáctico para 1° Medio, Biología, Unidad 3: Materia y energía en los ecosistemas. Los tamaños son aproximados.</span>
+    <span>Simplificaciones intencionales: la fase no luminosa también se conoce como ciclo de Calvin; el rendimiento de ATP por glucosa varía según el texto (30–38).</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+'use strict';
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const NS='http://www.w3.org/2000/svg';
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const F='font-family="Atkinson Hyperlegible, sans-serif"';
+const FD='font-family="Bricolage Grotesque, sans-serif"';
+
+/* ---------- shared molecule symbols ---------- */
+const MOL=`
+<g id="mCO2"><circle cx="-11" cy="0" r="7" fill="#e03131"/><circle cx="11" cy="0" r="7" fill="#e03131"/><circle cx="0" cy="0" r="8.5" fill="#343a40"/></g>
+<g id="mO2"><circle cx="-6" cy="0" r="7.5" fill="#e03131"/><circle cx="6" cy="0" r="7.5" fill="#e03131"/><circle cx="-8" cy="-3" r="2" fill="#fff" opacity=".6"/></g>
+<g id="mH2O"><circle cx="-8" cy="6" r="5" fill="#f8f9fa" stroke="#868e96" stroke-width="1.5"/><circle cx="8" cy="6" r="5" fill="#f8f9fa" stroke="#868e96" stroke-width="1.5"/><circle cx="0" cy="0" r="8" fill="#e03131"/></g>
+<g id="mGlu"><polygon points="12,0 6,10.4 -6,10.4 -12,0 -6,-10.4 6,-10.4" fill="#ffd43b" stroke="#a37b00" stroke-width="2.5"/><circle r="3" fill="#a37b00"/></g>
+<g id="mPir"><polygon points="9,-6 9,6 -3,10 -9,0 -3,-10" fill="#ffe066" stroke="#a37b00" stroke-width="2"/></g>
+<g id="mATP"><rect x="-17" y="-9" width="32" height="18" rx="4" fill="#6741d9"/><rect x="15" y="-4" width="4" height="8" rx="1" fill="#6741d9"/><text x="-1" y="4" text-anchor="middle" ${F} font-size="10" font-weight="700" fill="#fff">ATP</text></g>
+<g id="mADP"><rect x="-17" y="-9" width="32" height="18" rx="4" fill="#d0bfff" stroke="#6741d9" stroke-width="1.5"/><rect x="15" y="-4" width="4" height="8" rx="1" fill="#6741d9"/><text x="-1" y="4" text-anchor="middle" ${F} font-size="10" font-weight="700" fill="#4521a8">ADP</text></g>
+<g id="mNADPH"><rect x="-22" y="-9" width="44" height="18" rx="5" fill="#c2255c"/><text x="0" y="4" text-anchor="middle" ${F} font-size="9.5" font-weight="700" fill="#fff">NADPH</text></g>
+<g id="mNADH"><rect x="-19" y="-9" width="38" height="18" rx="5" fill="#c2255c"/><text x="0" y="4" text-anchor="middle" ${F} font-size="9.5" font-weight="700" fill="#fff">NADH</text></g>
+<g id="mNADP"><rect x="-22" y="-9" width="44" height="18" rx="5" fill="#fcc2d7" stroke="#c2255c" stroke-width="1.5"/><text x="0" y="4" text-anchor="middle" ${F} font-size="9.5" font-weight="700" fill="#a61e4d">NADP⁺</text></g>
+<g id="mE"><circle r="6" fill="#fcc419" stroke="#e67700" stroke-width="1.5"/><text y="3.5" text-anchor="middle" ${F} font-size="9" font-weight="700" fill="#7a4a00">e⁻</text></g>
+<g id="mH"><circle r="6" fill="#fff" stroke="#495057" stroke-width="1.5"/><text y="3.5" text-anchor="middle" ${F} font-size="8.5" font-weight="700" fill="#212529">H⁺</text></g>
+<g id="mPhoton"><circle r="7" fill="#fff3bf"/><circle r="4" fill="#fcc419"/></g>
+`;
+function particles(list){ // [id, path, dur, scale, begins[]]
+  return list.map(([id,d,dur,sc,begins])=>begins.map(b=>`<g opacity="0"><use href="#${id}" transform="scale(${sc})"/><animateMotion path="${d}" dur="${dur}s" begin="${b}s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.85;1" dur="${dur}s" begin="${b}s" repeatCount="indefinite"/></g>`).join('')).join('');
+}
+function addDefs(svg, extra=''){
+  let d=svg.querySelector('defs'); if(!d){d=document.createElementNS(NS,'defs');svg.prepend(d);} d.innerHTML+=MOL+extra;
+}
+
+/* =========================================================
+   TABS
+   ========================================================= */
+const tabs=$$('.tab'), panels=$$('.panel');
+function showTab(id,push){
+  if(!panels.some(p=>p.id===id)) id='explorador';
+  tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.tab===id?'true':'false'));
+  panels.forEach(p=>p.hidden=p.id!==id);
+  if(push){ try{history.replaceState(null,'','#'+id);}catch(e){} }
+  if(id==='explorador') requestAnimationFrame(()=>{sizeStage(); if(!inited) home(false);});
+}
+tabs.forEach(t=>t.addEventListener('click',()=>{showTab(t.dataset.tab,true); const top=$('.tabs').getBoundingClientRect().top+scrollY; if(scrollY>top) scrollTo({top:top,behavior:reduced?'auto':'smooth'});}));
+
+/* =========================================================
+   EXPLORER
+   ========================================================= */
+const stage=$('#stage'), world=$('#world'), cam=$('#cam'), lblLayer=$('#labels');
+addDefs(world,`
+ <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd6fb"/><stop offset="1" stop-color="#e8f7ff"/></linearGradient>
+ <linearGradient id="soilG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9c6b3c"/><stop offset="1" stop-color="#5e3b1a"/></linearGradient>
+ <radialGradient id="sunG"><stop offset="0" stop-color="#fffbe0"/><stop offset=".55" stop-color="#ffe066"/><stop offset="1" stop-color="#fab005"/></radialGradient>
+ <linearGradient id="leafG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#69db7c"/><stop offset="1" stop-color="#2b8a3e"/></linearGradient>
+`);
+
+const LV={
+  L0:{w:1000,h:700,name:'Planta completa',size:'≈ 40 cm'},
+  L1:{w:1000,h:700,parent:'L0',x:625,y:267.5,s:0.05,name:'Corte de la hoja',size:'grosor ≈ 0,3 mm'},
+  L2:{w:500,h:1250,parent:'L1',x:460,y:125,s:0.16,name:'Célula vegetal',size:'≈ 0,05 mm (50 µm)'},
+  L3:{w:1000,h:600,parent:'L2',x:140,y:60,s:0.22,name:'Cloroplasto',size:'≈ 0,005 mm (5 µm)'},
+  L4:{w:1000,h:500,parent:'L2',x:250,y:955,s:0.12,name:'Mitocondria',size:'≈ 0,001–0,002 mm (1–2 µm)'}
+};
+const CUM={};
+for(const id of ['L0','L1','L2','L3','L4']){
+  const l=LV[id];
+  if(!l.parent) CUM[id]={ox:0,oy:0,s:1};
+  else{const p=CUM[l.parent]; CUM[id]={ox:p.ox+p.s*l.x, oy:p.oy+p.s*l.y, s:p.s*l.s};}
+}
+
+/* ---- level art ---- */
+function artL0(){
+  let s=`<rect width="1000" height="560" fill="url(#skyG)"/>
+  <rect y="556" width="1000" height="144" fill="url(#soilG)"/>
+  <rect y="548" width="1000" height="14" rx="7" fill="#74c365"/>
+  <g data-part="sol"><g class="spin" style="animation-duration:30s">${Array.from({length:12},(_,i)=>`<line x1="120" y1="40" x2="120" y2="20" stroke="#fab005" stroke-width="7" stroke-linecap="round" transform="rotate(${i*30} 120 110)"/>`).join('')}</g><circle cx="120" cy="110" r="54" fill="url(#sunG)"/></g>
+  <g stroke="#ffd43b" stroke-width="5" stroke-linecap="round" opacity=".9"><line class="flow" x1="178" y1="140" x2="610" y2="272"/><line class="flow" x1="172" y1="160" x2="560" y2="425"/><line class="flow" x1="165" y1="125" x2="470" y2="215"/></g>
+  <g data-part="raiz" stroke="#f1e2bf" stroke-width="5" fill="none" stroke-linecap="round">
+    <path d="M500 600 C495 630 470 650 430 680"/><path d="M500 600 C505 640 540 660 580 690"/><path d="M500 600 L502 695"/><path d="M470 655 C450 660 430 650 405 655"/><path d="M540 660 C560 655 580 640 610 645"/><path d="M500 640 C520 650 530 670 525 695"/>
+  </g>
+  ${[[420,640],[560,630],[600,675],[450,690],[380,660],[640,660]].map(([x,y])=>`<path d="M${x} ${y-8} C${x+5} ${y-2} ${x+6} ${y+2} ${x} ${y+6} C${x-6} ${y+2} ${x-5} ${y-2} ${x} ${y-8}Z" fill="#4dabf7"/>`).join('')}
+  <path data-part="tallo" d="M500 600 C505 520 490 420 500 300 C505 240 500 200 498 170" stroke="#3d8b37" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <path class="flowS" d="M500 600 C505 520 490 420 500 300 C505 240 500 200 498 170" stroke="#74c0fc" stroke-width="4" fill="none"/>
+  `;
+  const leaves=['M498 420 C430 360 330 370 270 410 C340 452 440 452 498 420Z','M499 262 C450 190 370 168 318 190 C360 252 440 276 499 262Z','M498 172 C470 110 490 60 522 38 C546 90 536 140 498 172Z','M502 470 C560 420 660 418 712 452 C640 502 560 502 502 470Z'];
+  s+=leaves.map(d=>`<path data-part="hoja" d="${d}" fill="url(#leafG)" stroke="#1e6b30" stroke-width="2.5"/>`).join('');
+  s+=`<path d="M498 420 L300 410 M499 262 L340 195 M498 172 L520 50 M502 470 L700 452" stroke="#1e6b30" stroke-width="2" opacity=".6"/>`;
+  s+=`<path data-part="hoja" d="M503 332 C560 236 710 200 800 246 C738 336 604 366 503 332Z" fill="url(#leafG)" stroke="#1e6b30" stroke-width="3"/>
+  <path d="M503 332 C600 300 700 270 800 246" stroke="#1e6b30" stroke-width="2.5" fill="none" opacity=".7"/>
+  <rect data-part="corte" x="625" y="267.5" width="50" height="35" fill="#eaf6e2"/>
+  <circle cx="650" cy="285" r="34" fill="none" stroke="#fff" stroke-width="4"/>
+  <circle cx="650" cy="285" r="34" fill="none" stroke="#fff" stroke-width="3" opacity=".8"><animate attributeName="r" values="34;46;34" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0;.8" dur="2.4s" repeatCount="indefinite"/></circle>
+  <line x1="674" y1="309" x2="700" y2="336" stroke="#fff" stroke-width="7" stroke-linecap="round"/>`;
+  s+=particles([
+    ['mCO2','M960 150 C880 170 800 220 700 285',4.5,.8,[0,1.5,3]],
+    ['mO2','M690 300 C780 340 870 330 990 300',4.5,.8,[.7,2.2,3.7]],
+    ['mH2O','M500 640 C505 520 490 420 500 300 C540 290 580 285 640 285',5,.6,[0,1.25,2.5,3.75]]
+  ]);
+  return s;
+}
+function artL1(){
+  let s=`<rect x="0" y="0" width="1000" height="700" rx="36" fill="#eef8e8" stroke="#7fb069" stroke-width="4"/>
+  <rect data-part="cuticula" x="14" y="30" width="972" height="18" rx="9" fill="#f5dc6a"/>`;
+  for(let i=0;i<16;i++){const x=14+i*60.75; s+=`<rect data-part="epidermis" x="${x+1}" y="50" width="58" height="62" rx="12" fill="#f6fcf4" stroke="#9cc79a" stroke-width="3"/>`;}
+  const pal=(x,w)=>{let c=`<rect data-part="empalizada" x="${x}" y="118" width="${w}" height="210" rx="18" fill="#cdebb0" stroke="#6aa84f" stroke-width="3"/>`;for(let y=140;y<320;y+=34){c+=`<ellipse cx="${x+11}" cy="${y}" rx="6.5" ry="12" fill="#2f9e44"/><ellipse cx="${x+w-11}" cy="${y+16}" rx="6.5" ry="12" fill="#2f9e44"/>`;}return c;};
+  for(let i=0;i<8;i++){s+=pal(16+i*55.2,51); s+=pal(546+i*55.2,51);}
+  s+=`<rect data-part="celula" x="460" y="125" width="80" height="200" rx="16" fill="#cdebb0"/>`;
+  // spongy
+  let seed=7; const rnd=()=>{seed=(seed*9301+49297)%233280;return seed/233280;};
+  for(let row=0;row<3;row++){for(let cx=50+(row%2)*35;cx<980;cx+=72){const cy=385+row*68+rnd()*10-5; if(Math.hypot(cx-250,cy-450)<108||Math.hypot(cx-700,cy-515)<70) continue; const r=25+rnd()*6; s+=`<g data-part="esponjoso"><circle cx="${cx}" cy="${cy}" r="${r}" fill="#dff0c8" stroke="#7fb069" stroke-width="3"/><circle cx="${cx-9}" cy="${cy-6}" r="4.5" fill="#40a04f"/><circle cx="${cx+8}" cy="${cy+7}" r="4.5" fill="#40a04f"/><circle cx="${cx+9}" cy="${cy-9}" r="4" fill="#40a04f"/></g>`;}}
+  s+=`<g data-part="nervadura"><circle cx="250" cy="450" r="80" fill="#f3f8e4" stroke="#8aa05a" stroke-width="4"/>
+   <circle cx="222" cy="424" r="15" fill="#a5d8ff" stroke="#1c7ed6" stroke-width="3"/><circle cx="254" cy="416" r="17" fill="#a5d8ff" stroke="#1c7ed6" stroke-width="3"/><circle cx="284" cy="430" r="13" fill="#a5d8ff" stroke="#1c7ed6" stroke-width="3"/>
+   <circle cx="226" cy="482" r="10" fill="#ffd8a8" stroke="#e8590c" stroke-width="2.5"/><circle cx="252" cy="490" r="11" fill="#ffd8a8" stroke="#e8590c" stroke-width="2.5"/><circle cx="277" cy="479" r="9" fill="#ffd8a8" stroke="#e8590c" stroke-width="2.5"/></g>`;
+  for(let i=0;i<16;i++){const x=14+i*60.75; if(x+58>655&&x<745) continue; s+=`<rect data-part="epidermis" x="${x+1}" y="568" width="58" height="60" rx="12" fill="#f6fcf4" stroke="#9cc79a" stroke-width="3"/>`;}
+  s+=`<g data-part="estoma"><path d="M700 566 C664 566 652 590 652 598 C652 612 664 630 700 630 C688 616 686 580 700 566Z" fill="#9ad17a" stroke="#2f7a33" stroke-width="3"/>
+   <path d="M700 566 C736 566 748 590 748 598 C748 612 736 630 700 630 C712 616 714 580 700 566Z" fill="#9ad17a" stroke="#2f7a33" stroke-width="3"/>
+   <ellipse cx="700" cy="598" rx="7" ry="24" fill="#355e35"/><circle cx="672" cy="592" r="4" fill="#2f9e44"/><circle cx="676" cy="610" r="4" fill="#2f9e44"/><circle cx="728" cy="592" r="4" fill="#2f9e44"/><circle cx="724" cy="610" r="4" fill="#2f9e44"/></g>`;
+  s+=`<rect data-part="cuticula" x="14" y="630" width="972" height="14" rx="7" fill="#f5dc6a"/>`;
+  s+=particles([
+    ['mCO2','M700 700 L700 600 C700 540 620 460 520 290',5,1,[0,1.7,3.4]],
+    ['mO2','M480 300 C560 420 690 500 700 600 L712 700',5,1,[.8,2.5,4.2]],
+    ['mH2O','M254 410 C310 350 400 320 470 280',4,1,[0,1.3,2.6]]
+  ]);
+  return s;
+}
+function artL2(){
+  let s=`<rect data-part="pared" x="6" y="6" width="488" height="1238" rx="44" fill="#b9dd98" stroke="#6b8f3a" stroke-width="12"/>
+  <rect data-part="citoplasma" x="22" y="22" width="456" height="1206" rx="34" fill="#f1f9e4"/>
+  <rect data-part="membrana" x="22" y="22" width="456" height="1206" rx="34" fill="none" stroke="#8fbf5a" stroke-width="4" stroke-dasharray="12 7" pointer-events="stroke"/>
+  <rect data-part="vacuola" x="105" y="250" width="290" height="660" rx="90" fill="#d3eaff" stroke="#74b3e8" stroke-width="5"/>
+  <g data-part="nucleo"><circle cx="250" cy="1105" r="80" fill="#d0bfff" stroke="#6741d9" stroke-width="5"/><circle cx="268" cy="1092" r="24" fill="#9775fa"/></g>`;
+  const chl=(cx,cy)=>`<g data-part="cloroplasto"><ellipse cx="${cx}" cy="${cy}" rx="30" ry="60" fill="#6cc36b" stroke="#2b7a3d" stroke-width="3.5"/>${[-30,-10,10,30].map(o=>`<rect x="${cx-12}" y="${cy+o-4}" width="24" height="8" rx="4" fill="#2b7a3d"/>`).join('')}</g>`;
+  [280,420,560,700,840].forEach(y=>{s+=chl(62,y);s+=chl(438,y);}); s+=chl(62,980); s+=chl(438,1000);
+  const mit=(x,y,r)=>`<g data-part="mitocondria" transform="rotate(${r} ${x+32} ${y+15})"><rect x="${x}" y="${y}" width="64" height="30" rx="15" fill="#ffa94d" stroke="#d9480f" stroke-width="3"/><path d="M${x+12} ${y+8} l8 14 l8 -14 l8 14 l8 -14 l8 14" stroke="#d9480f" stroke-width="2.5" fill="none"/></g>`;
+  s+=mit(150,212,-8)+mit(290,214,10)+mit(130,940,20)+mit(110,1190,-5)+mit(330,1188,6);
+  s+=`<ellipse data-part="cloroplasto" cx="250" cy="126" rx="108" ry="64" fill="#6cc36b"/>
+  <rect data-part="mitocondria" x="250" y="955" width="120" height="60" rx="30" fill="#ffa94d"/>`;
+  s+=particles([
+    ['mGlu','M350 170 C425 260 420 600 405 800 C398 900 380 940 350 965',6,1.2,[0,2,4]],
+    ['mO2','M150 175 C95 300 95 700 110 850 C125 930 215 960 262 980',6,1.1,[1,3,5]],
+    ['mCO2','M260 960 C190 900 150 700 160 400 C165 280 190 220 220 185',6,1.1,[.5,2.5,4.5]],
+    ['mATP','M372 990 C430 1040 440 1120 380 1200',3.5,1.2,[0,1.2,2.4]]
+  ]);
+  return s;
+}
+function artL3(){
+  let s=`<ellipse data-part="membranasCloro" cx="500" cy="300" rx="485" ry="285" fill="#9fd48a" stroke="#2b7a3d" stroke-width="9"/>
+  <ellipse data-part="estroma" cx="500" cy="300" rx="460" ry="260" fill="#e4f5d6" stroke="#46a257" stroke-width="5"/>
+  <g stroke="#e3fafc" stroke-width="7" stroke-linecap="round" opacity=".95"><line class="flow" x1="40" y1="40" x2="215" y2="185" stroke="#ffd43b"/><line class="flow" x1="200" y1="10" x2="580" y2="175" stroke="#ffd43b"/><line class="flow" x1="330" y1="-20" x2="740" y2="235" stroke="#ffd43b"/></g>
+  <g stroke="#2b7a3d" stroke-width="5" fill="none" opacity=".75"><path d="M305 230 C350 250 360 300 375 310"/><path d="M475 290 C520 270 540 250 555 240"/><path d="M665 230 C700 260 710 290 725 300"/><path d="M200 300 C160 330 130 350 100 360"/></g>
+  <g data-part="almidon"><ellipse cx="240" cy="445" rx="54" ry="32" fill="#fffbea" stroke="#d9c27a" stroke-width="4"/><ellipse cx="240" cy="445" rx="34" ry="18" fill="none" stroke="#eadca6" stroke-width="3"/></g>
+  ${[[150,200],[380,160],[700,150],[860,240],[640,420],[330,520],[820,420],[480,540]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="5" fill="#5c940d" opacity=".55"/>`).join('')}`;
+  const stack=(cx,cy)=>{let g=`<g data-part="grana">`;for(let i=0;i<7;i++){g+=`<rect data-part="tilacoide" x="${cx-55}" y="${cy-75+i*22}" width="110" height="18" rx="9" fill="#2f9e44" stroke="#1b5e2e" stroke-width="2.5"/>`;}return g+`</g>`;};
+  s+=stack(250,250)+stack(420,300)+stack(610,240)+stack(780,300);
+  s+=`<g data-part="calvin"><circle cx="560" cy="470" r="52" fill="#fff4d6" stroke="#e8a317" stroke-width="3"/><g class="spin"><circle cx="560" cy="470" r="38" fill="none" stroke="#e8a317" stroke-width="8" stroke-dasharray="50 10"/><path d="M596 460 l10 -6 l2 12z" fill="#e8a317"/></g></g>`;
+  s+=particles([
+    ['mH2O','M20 380 C100 360 170 330 230 300',4,2,[0,1.3,2.6]],
+    ['mO2','M620 190 C690 110 780 50 900 -10',4.5,2,[.4,1.9,3.4]],
+    ['mATP','M430 380 C455 420 490 450 520 462',3,2,[0,1,2]],
+    ['mNADPH','M770 380 C730 425 670 455 612 470',3.2,1.8,[.5,1.6,2.7]],
+    ['mADP','M520 440 C470 420 440 400 410 380',3.4,1.6,[1.5,3]],
+    ['mCO2','M560 660 C560 610 560 560 560 525',3.5,2,[0,1.2,2.4]],
+    ['mGlu','M608 490 C700 540 800 565 930 640',4,2,[.8,2.8]],
+    ['mPhoton','M40 40 L215 185',1.6,2,[0,.55,1.1]],
+    ['mPhoton','M330 -20 L740 235',2,2,[.3,1,1.7]]
+  ]);
+  return s;
+}
+function artL4(){
+  let s=`<rect data-part="membExt" x="15" y="15" width="970" height="470" rx="235" fill="#ffe3c2" stroke="#d9480f" stroke-width="9"/>
+  <rect data-part="matriz" x="62" y="62" width="876" height="376" rx="188" fill="#ffb366"/>`;
+  const top=[330,540,750], bot=[435,645];
+  let fingers='';
+  top.forEach(x=>{fingers+=`<rect data-part="crestas" x="${x-24}" y="55" width="48" height="240" rx="24" fill="#ffe3c2" stroke="#e8590c" stroke-width="6"/><rect x="${x-19}" y="50" width="38" height="24" fill="#ffe3c2"/>`;});
+  bot.forEach(x=>{fingers+=`<rect data-part="crestas" x="${x-24}" y="205" width="48" height="240" rx="24" fill="#ffe3c2" stroke="#e8590c" stroke-width="6"/><rect x="${x-19}" y="426" width="38" height="24" fill="#ffe3c2"/>`;});
+  s+=`<rect data-part="membInt" x="62" y="62" width="876" height="376" rx="188" fill="none" stroke="#e8590c" stroke-width="6" pointer-events="stroke"/>`+fingers;
+  let syn='<g data-part="atpsintasa">';
+  top.forEach(x=>[120,190,260].forEach(y=>{syn+=`<line x1="${x-27}" y1="${y}" x2="${x-40}" y2="${y}" stroke="#6741d9" stroke-width="4"/><circle cx="${x-44}" cy="${y}" r="7" fill="#9775fa" stroke="#6741d9" stroke-width="2"/><line x1="${x+27}" y1="${y+20}" x2="${x+40}" y2="${y+20}" stroke="#6741d9" stroke-width="4"/><circle cx="${x+44}" cy="${y+20}" r="7" fill="#9775fa" stroke="#6741d9" stroke-width="2"/>`;}));
+  bot.forEach(x=>[250,320,390].forEach(y=>{syn+=`<line x1="${x-27}" y1="${y}" x2="${x-40}" y2="${y}" stroke="#6741d9" stroke-width="4"/><circle cx="${x-44}" cy="${y}" r="7" fill="#9775fa" stroke="#6741d9" stroke-width="2"/><line x1="${x+27}" y1="${y-20}" x2="${x+40}" y2="${y-20}" stroke="#6741d9" stroke-width="4"/><circle cx="${x+44}" cy="${y-20}" r="7" fill="#9775fa" stroke="#6741d9" stroke-width="2"/>`;}));
+  s+=syn+'</g>';
+  s+=`<g data-part="krebs"><circle cx="175" cy="250" r="72" fill="#fff0db" stroke="#c2410c" stroke-width="3"/><g class="spin"><circle cx="175" cy="250" r="54" fill="none" stroke="#c2410c" stroke-width="9" stroke-dasharray="70 14"/><path d="M229 238 l8 -10 l6 12z" fill="#c2410c"/></g></g>
+  ${[[250,120],[270,390],[860,250],[480,160],[590,330]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="5" fill="#c2410c" opacity=".5"/>`).join('')}`;
+  s+=particles([
+    ['mPir','M-80 250 C0 250 60 250 110 250',3.5,2.2,[0,1.2,2.4]],
+    ['mCO2','M150 185 C130 120 90 60 30 -40',4,2,[.6,2,3.4]],
+    ['mNADH','M240 230 C265 200 280 170 290 140',2.6,1.8,[0,.9,1.8]],
+    ['mO2','M880 -60 C865 60 855 150 840 230',4,2,[0,1.3,2.6]],
+    ['mH2O','M835 270 C870 340 910 420 980 540',4,2,[1,2.3,3.6]],
+    ['mATP','M560 320 C640 340 760 360 1080 380',3.4,2,[0,.8,1.6,2.4]],
+    ['mATP','M660 200 C760 210 880 190 1080 170',3.4,2,[.4,1.2,2,2.8]],
+    ['mATP','M390 330 C480 380 700 440 1080 460',4,2,[.2,1.4,2.6]]
+  ]);
+  return s;
+}
+const ART={L0:artL0,L1:artL1,L2:artL2,L3:artL3,L4:artL4};
+const LG={};
+for(const id of ['L0','L1','L2','L3','L4']){
+  const g=document.createElementNS(NS,'g'); g.id=id; g.innerHTML=ART[id]();
+  const l=LV[id];
+  if(l.parent){ g.setAttribute('transform',`translate(${l.x} ${l.y}) scale(${l.s})`); LG[l.parent].appendChild(g); }
+  else cam.appendChild(g);
+  LG[id]=g;
+}
+
+/* ---- parts (fichas) ---- */
+const C={green:'#2b9348',sun:'#e9a800',water:'#1c7ed6',mito:'#e8590c',atp:'#6741d9',soil:'#8a5a2b',sky:'#0b98ab',nad:'#c2255c',grey:'#5f6b76'};
+const PARTS={
+  planta:{t:'Planta',tag:'Organismo autótrofo',c:C.green,size:'≈ 40 cm',tx:'Fabrica su propio alimento (glucosa) usando luz, agua y CO₂. Por eso es un organismo autótrofo y es la base de las cadenas alimentarias.',rel:'Tiene cloroplastos (fotosíntesis) y también mitocondrias (respiración celular).',fly:['L0',[0,0,1000,700]]},
+  sol:{t:'Sol · energía lumínica',tag:'Fuente de energía',c:C.sun,size:'a 150 millones de km',tx:'La luz del sol es la fuente de energía de casi todos los ecosistemas. La planta la captura con la clorofila.',rel:'Es un reactivo de la fase luminosa.',fly:['L0',[20,10,220,210]]},
+  hoja:{t:'Hoja',tag:'Órgano de la planta',c:C.green,size:'≈ 8–12 cm',tx:'Es ancha y delgada para recibir mucha luz. Aquí se concentran los cloroplastos y los estomas.',rel:'Es el principal lugar donde ocurre la fotosíntesis.',fly:['L0',[495,195,315,175]]},
+  tallo:{t:'Tallo',tag:'Órgano de la planta',c:'#3d8b37',size:'≈ 30 cm',tx:'Sostiene la planta. Por dentro tiene tubos: el xilema sube agua y sales desde la raíz, el floema reparte el azúcar fabricado en las hojas.',rel:'Transporta el agua, reactivo de la fotosíntesis.',fly:['L0',[400,160,200,460]]},
+  raiz:{t:'Raíz',tag:'Órgano de la planta',c:C.soil,size:'≈ 10 cm',tx:'Absorbe agua y sales minerales del suelo y fija la planta. Está bajo tierra, sin luz.',rel:'Sus células no hacen fotosíntesis: obtienen energía solo con respiración celular.',fly:['L0',[360,590,280,110]]},
+  corte:{t:'Corte de la hoja',tag:'Vista al microscopio',c:C.green,size:'grosor ≈ 0,3 mm',tx:'Si cortamos la hoja y la miramos al microscopio vemos capas de células, cada una con una función.',rel:'Toca una célula en empalizada para seguir entrando.',fly:['L1',[0,0,1000,700]],zoom:true},
+  cuticula:{t:'Cutícula',tag:'Capa protectora',c:'#c9a700',size:'muy delgada',tx:'Capa de cera que cubre la hoja. Es impermeable: evita que la hoja pierda agua.',rel:'Como no deja pasar gases, la hoja necesita estomas.',fly:['L1',[0,0,500,160]]},
+  epidermis:{t:'Epidermis',tag:'Tejido',c:'#74a57f',size:'1 capa de células',tx:'Capa de células transparentes que protege la hoja por arriba y por abajo. Deja pasar la luz.',rel:'En la epidermis inferior están la mayoría de los estomas.',fly:['L1',[0,20,560,130]]},
+  empalizada:{t:'Parénquima en empalizada',tag:'Tejido',c:C.green,size:'células de ≈ 50 µm',tx:'Células alargadas y apretadas, como una empalizada, llenas de cloroplastos. Reciben mucha luz.',rel:'Es el tejido donde más fotosíntesis ocurre.',fly:['L1',[0,100,1000,250]]},
+  esponjoso:{t:'Parénquima esponjoso',tag:'Tejido',c:'#7fb069',size:'',tx:'Células redondeadas con espacios de aire entre ellas. Por esos espacios circulan el CO₂, el O₂ y el vapor de agua.',rel:'Conecta los estomas con las células que hacen fotosíntesis.',fly:['L1',[0,330,1000,250]]},
+  nervadura:{t:'Nervadura',tag:'Tejido conductor',c:C.water,size:'',tx:'Son los “tubos” de la hoja. El xilema (azul) trae agua y sales desde la raíz; el floema (naranjo) lleva el azúcar a toda la planta.',rel:'Entrega el agua para la fase luminosa y se lleva la glucosa producida.',fly:['L1',[140,340,220,220]]},
+  estoma:{t:'Estoma',tag:'Estructura de la hoja',c:C.sky,size:'≈ 0,02–0,04 mm',tx:'Poro rodeado por dos células oclusivas con forma de riñón. Se abre y se cierra según la luz y el agua disponible.',rel:'Entra CO₂ (reactivo de la fase no luminosa). Salen O₂ y vapor de agua.',fly:['L1',[590,470,220,200]]},
+  celula:{t:'Célula vegetal',tag:'Unidad de la vida',c:C.green,size:'≈ 0,05 mm (50 µm)',tx:'Tiene pared celular, una gran vacuola, núcleo, cloroplastos y mitocondrias.',rel:'Toca un cloroplasto o una mitocondria para entrar.',fly:['L2',[0,0,500,1250]],zoom:true},
+  pared:{t:'Pared celular',tag:'Estructura',c:'#6b8f3a',size:'',tx:'Cubierta rígida hecha de celulosa (un compuesto orgánico). Da forma y soporte a la célula vegetal.',rel:'Los animales no tienen pared celular.',fly:['L2',[0,0,500,1250]]},
+  membrana:{t:'Membrana plasmática',tag:'Estructura',c:'#8fbf5a',size:'',tx:'Envoltura delgada que controla qué entra y qué sale de la célula.',rel:'Por ella pasan el CO₂, el O₂ y el agua.',fly:['L2',[0,0,500,1250]]},
+  citoplasma:{t:'Citoplasma',tag:'Estructura',c:'#94b86b',size:'',tx:'Líquido gelatinoso donde flotan los organelos.',rel:'Aquí ocurre la primera fase de la respiración: partir la glucosa.',fly:['L2',[0,0,500,1250]]},
+  vacuola:{t:'Vacuola',tag:'Organelo',c:C.water,size:'',tx:'Gran bolsa que guarda agua y sustancias. Cuando está llena, la célula queda firme.',rel:'Si falta agua, la planta se marchita.',fly:['L2',[90,230,320,700]]},
+  nucleo:{t:'Núcleo',tag:'Organelo',c:C.atp,size:'',tx:'Guarda la información genética (ADN) que dirige el funcionamiento de la célula.',rel:'Contiene las instrucciones para fabricar las enzimas de la fotosíntesis y la respiración.',fly:['L2',[140,1000,220,220]]},
+  cloroplasto:{t:'Cloroplasto',tag:'Organelo · fotosíntesis',c:C.green,size:'≈ 0,005 mm (5 µm)',tx:'Organelo verde por la clorofila. Por dentro tiene tilacoides apilados (grana) rodeados por un líquido llamado estroma.',rel:'Fotosíntesis: transforma energía lumínica en energía química (glucosa).',fly:['L3',[0,0,1000,600]],zoom:true},
+  membranasCloro:{t:'Doble membrana',tag:'Parte del cloroplasto',c:'#2b7a3d',size:'',tx:'El cloroplasto está rodeado por dos membranas que controlan el paso de sustancias.',rel:'Por aquí entran CO₂ y agua, y salen O₂ y glucosa.',fly:['L3',[0,0,1000,600]]},
+  grana:{t:'Grana (pila de tilacoides)',tag:'Parte del cloroplasto',c:'#1b5e2e',size:'',tx:'Pilas de tilacoides, parecidas a una torre de monedas. En sus membranas está la clorofila.',rel:'Aquí ocurre la FASE LUMINOSA: entra luz y agua; salen O₂, ATP y NADPH.',fly:['L3',[170,150,680,250]]},
+  tilacoide:{t:'Tilacoide',tag:'Parte del cloroplasto',c:'#2f9e44',size:'≈ 0,0005 mm',tx:'Saco aplanado con clorofila en su membrana. Varios apilados forman un granum.',rel:'Lugar de la fase luminosa.',fly:['L3',[180,160,160,180]]},
+  estroma:{t:'Estroma',tag:'Parte del cloroplasto',c:'#46a257',size:'',tx:'Líquido que rodea a los tilacoides dentro del cloroplasto.',rel:'Aquí ocurre la FASE NO LUMINOSA: entran CO₂, ATP y NADPH; sale glucosa.',fly:['L3',[330,380,460,210]]},
+  calvin:{t:'Ciclo que fija el CO₂',tag:'Fase no luminosa',c:'#e8a317',size:'',tx:'Una “rueda” de reacciones en el estroma. Atrapa el carbono del CO₂ y lo convierte en azúcar. También se llama ciclo de Calvin.',rel:'Usa el ATP y el NADPH de la fase luminosa.',fly:['L3',[420,380,280,200]]},
+  almidon:{t:'Almidón',tag:'Molécula orgánica',c:'#c9a700',size:'',tx:'Muchas glucosas unidas. Es la forma en que la planta guarda la glucosa que le sobra.',rel:'Ejemplo de anabolismo (construir).',fly:['L3',[150,380,200,140]]},
+  mitocondria:{t:'Mitocondria',tag:'Organelo · respiración celular',c:C.mito,size:'≈ 0,001–0,002 mm (1–2 µm)',tx:'La “central eléctrica” de la célula. Tiene dos membranas; la interna forma pliegues llamados crestas.',rel:'Respiración celular: usa glucosa y O₂ para fabricar ATP. Libera CO₂ y agua.',fly:['L4',[0,0,1000,500]],zoom:true},
+  membExt:{t:'Membrana externa',tag:'Parte de la mitocondria',c:'#d9480f',size:'',tx:'Envoltura lisa que rodea a la mitocondria.',rel:'Deja entrar los trozos de glucosa y el O₂.',fly:['L4',[0,0,1000,500]]},
+  membInt:{t:'Membrana interna',tag:'Parte de la mitocondria',c:C.mito,size:'',tx:'Membrana plegada que forma las crestas. Tiene mucha superficie.',rel:'Aquí están la cadena de transporte y la ATP sintasa.',fly:['L4',[0,0,1000,500]]},
+  crestas:{t:'Crestas mitocondriales',tag:'Parte de la mitocondria',c:C.mito,size:'',tx:'Pliegues de la membrana interna. Más pliegues = más espacio para fabricar ATP.',rel:'Fases 4 y 5: aquí se fabrica la mayor parte del ATP, usando O₂ y formando agua.',fly:['L4',[280,40,520,420]]},
+  atpsintasa:{t:'ATP sintasa',tag:'Proteína',c:C.atp,size:'',tx:'Una “turbina” en las crestas. Cuando los hidrógenos pasan por ella, gira y arma ATP.',rel:'Fase 5 de la respiración celular.',fly:['L4',[270,90,200,220]]},
+  matriz:{t:'Matriz mitocondrial',tag:'Parte de la mitocondria',c:'#c2410c',size:'',tx:'Líquido del interior de la mitocondria.',rel:'Aquí ocurre el ciclo de Krebs (fase 3), que libera CO₂.',fly:['L4',[60,140,280,220]]},
+  krebs:{t:'Ciclo de Krebs',tag:'Fase 3 de la respiración',c:'#c2410c',size:'',tx:'Rueda de reacciones que termina de desarmar los trozos de glucosa. Libera CO₂ y carga camiones NADH.',rel:'El CO₂ que exhalas se forma aquí.',fly:['L4',[70,150,230,200]]}
+};
+/* ---- labels ---- */
+const LABELS=[
+  ['L0',120,110,'Sol · energía lumínica','sol',50,-40],
+  ['L0',720,240,'Hoja','hoja',30,-50],
+  ['L0',650,285,'Lupa · toca para entrar','corte',50,40],
+  ['L0',498,480,'Tallo','tallo',-60,0],
+  ['L0',470,655,'Raíz · absorbe agua','raiz',-70,10],
+  ['L0',900,165,'CO₂ entra','estoma',10,-24],
+  ['L0',930,312,'O₂ sale','estoma',0,28],
+  ['L1',300,39,'Cutícula · cera','cuticula',30,-26],
+  ['L1',140,81,'Epidermis superior','epidermis',0,-40],
+  ['L1',180,230,'Parénquima en empalizada','empalizada',-40,-30],
+  ['L1',500,160,'Célula · toca para entrar','celula',70,-60],
+  ['L1',870,470,'Parénquima esponjoso','esponjoso',0,-40],
+  ['L1',250,450,'Nervadura · xilema y floema','nervadura',-40,50],
+  ['L1',700,598,'Estoma','estoma',70,40],
+  ['L1',120,598,'Epidermis inferior','epidermis',0,40],
+  ['L2',20,520,'Pared celular','pared',-30,-20],
+  ['L2',250,600,'Vacuola','vacuola',40,0],
+  ['L2',250,1105,'Núcleo','nucleo',-50,20],
+  ['L2',250,126,'Cloroplasto · toca','cloroplasto',60,-40],
+  ['L2',310,985,'Mitocondria · toca','mitocondria',60,30],
+  ['L2',438,700,'Cloroplastos','cloroplasto',30,-20],
+  ['L2',40,1190,'Citoplasma','citoplasma',-20,30],
+  ['L3',500,16,'Doble membrana','membranasCloro',40,-20],
+  ['L3',250,180,'Grana · fase luminosa','grana',-60,-30],
+  ['L3',780,237,'Tilacoide','tilacoide',50,-40],
+  ['L3',720,520,'Estroma · fase no luminosa','estroma',40,30],
+  ['L3',560,470,'Rueda que fija el CO₂','calvin',-40,40],
+  ['L3',240,445,'Almidón','almidon',-50,30],
+  ['L3',860,40,'O₂ sale','grana',10,-10],
+  ['L3',60,375,'H₂O entra','grana',-10,-30],
+  ['L3',560,590,'CO₂ entra','estroma',-40,20],
+  ['L3',880,610,'Glucosa sale','estroma',-20,20],
+  ['L3',470,410,'ATP + NADPH','grana',-80,10],
+  ['L4',500,15,'Membrana externa','membExt',30,-20],
+  ['L4',62,250,'Membrana interna','membInt',-20,60],
+  ['L4',540,180,'Crestas','crestas',40,-60],
+  ['L4',286,190,'ATP sintasa (turbina)','atpsintasa',-40,-60],
+  ['L4',175,250,'Matriz · ciclo de Krebs','krebs',-10,-110],
+  ['L4',850,40,'O₂ entra','crestas',30,-10],
+  ['L4',960,380,'ATP sale','atpsintasa',10,20],
+  ['L4',60,250,'Trozos de glucosa','matriz',-20,120],
+  ['L4',60,40,'CO₂ sale','krebs',-10,-10],
+  ['L4',930,470,'H₂O','crestas',20,20]
+];
+const lblEls=LABELS.map(([lv,x,y,t,p,dx,dy])=>{
+  const g=document.createElementNS(NS,'g'); g.setAttribute('class','lbl'); g.dataset.part=p;
+  const right=dx>=0;
+  g.innerHTML=`<line x1="0" y1="0" x2="${dx}" y2="${dy}"/><circle r="4"/><text x="${dx+(right?6:-6)}" y="${dy+4}" text-anchor="${right?'start':'end'}">${t}</text>`;
+  lblLayer.appendChild(g); return {lv,x,y,g};
+});
+
+/* ---- camera ---- */
+let W=0,H=0,k=1,tx=0,ty=0,k0=1,inited=false,anim=null;
+function sizeStage(){const r=stage.getBoundingClientRect(); if(r.width<10) return false;
+  const cx=W?(W/2-tx)/k:500, cy=H?(H/2-ty)/k:350, rel=inited?k/k0:1;
+  W=r.width;H=r.height; world.setAttribute('viewBox',`0 0 ${W} ${H}`); k0=Math.min(W/1000,H/700);
+  if(inited){k=k0*rel; tx=W/2-cx*k; ty=H/2-cy*k; render();}
+  return true;}
+const wr=(lv,r)=>{const c=CUM[lv];return {x:c.ox+c.s*r[0],y:c.oy+c.s*r[1],w:c.s*r[2],h:c.s*r[3]};};
+function fit(R,pad=.92){const kk=Math.min(W/R.w,H/R.h)*pad;return {k:kk,cx:R.x+R.w/2,cy:R.y+R.h/2};}
+function home(animate=true){ if(!sizeStage()) return; const f=fit({x:0,y:0,w:1000,h:700},1); if(animate&&inited) flyTo(f); else {k=f.k;tx=W/2-f.cx*k;ty=H/2-f.cy*k;inited=true;render();} }
+const clampK=v=>Math.max(k0*.5,Math.min(k0*4000,v));
+function zoomAt(sx,sy,f){const nk=clampK(k*f); const wx=(sx-tx)/k, wy=(sy-ty)/k; k=nk; tx=sx-wx*k; ty=sy-wy*k; render();}
+const smooth=(a,b,x)=>{const t=Math.max(0,Math.min(1,(x-a)/(b-a)));return t*t*(3-2*t);};
+function levelFrac(lv){const c=CUM[lv];return Math.max(k*c.s*LV[lv].w/W, k*c.s*LV[lv].h/H);}
+let rq=0; function render(){ if(rq) return; rq=requestAnimationFrame(doRender); }
+function doRender(){ rq=0;
+  cam.setAttribute('transform',`translate(${tx} ${ty}) scale(${k})`);
+  const vis={};
+  for(const lv of Object.keys(LV)){const f=levelFrac(lv); vis[lv]=smooth(.22,.42,f)*(1-smooth(2.6,5,f)); if(LV[lv].parent) LG[lv].style.pointerEvents=f>.12?'':'none';}
+  for(const L of lblEls){const o=vis[L.lv]; if(o<.03){L.g.style.display='none';continue;}
+    const c=CUM[L.lv]; const sx=tx+k*(c.ox+c.s*L.x), sy=ty+k*(c.oy+c.s*L.y);
+    if(sx<-150||sx>W+150||sy<-80||sy>H+80){L.g.style.display='none';continue;}
+    L.g.style.display=''; L.g.setAttribute('transform',`translate(${sx.toFixed(1)} ${sy.toFixed(1)})`); L.g.style.opacity=o;}
+  // readouts
+  let cur='L0';
+  for(const lv of ['L3','L4','L2','L1']){const c=CUM[lv],l=LV[lv]; const x0=tx+k*c.ox,y0=ty+k*c.oy,x1=x0+k*c.s*l.w,y1=y0+k*c.s*l.h; if(levelFrac(lv)>=.45&&x0<W/2&&x1>W/2&&y0<H/2&&y1>H/2){cur=lv;break;}}
+  $('#rLevel').textContent=`${LV[cur].name} · ${LV[cur].size}`;
+  const z=k/k0; $('#rZoom').textContent='Zoom ×'+(z<10?z.toFixed(1).replace('.',','):Math.round(z).toLocaleString('es-CL'));
+}
+function flyTo(f){
+  if(anim) cancelAnimationFrame(anim);
+  const p0=[(W/2-tx)/k,(H/2-ty)/k,W/k], p1=[f.cx,f.cy,W/f.k];
+  const rho=Math.SQRT2,rho2=2,rho4=4, dx=p1[0]-p0[0],dy=p1[1]-p0[1],d2=dx*dx+dy*dy, w0=p0[2],w1=p1[2];
+  let S,interp;
+  if(d2<1e-12){S=Math.log(w1/w0)/rho; interp=t=>[p0[0]+t*dx,p0[1]+t*dy,w0*Math.exp(rho*t*S)];}
+  else{const d1=Math.sqrt(d2),b0=(w1*w1-w0*w0+rho4*d2)/(2*w0*rho2*d1),b1=(w1*w1-w0*w0-rho4*d2)/(2*w1*rho2*d1),r0=Math.log(Math.sqrt(b0*b0+1)-b0),r1=Math.log(Math.sqrt(b1*b1+1)-b1);S=(r1-r0)/rho;
+    interp=t=>{const s=t*S,ch=Math.cosh(r0),u=w0/(rho2*d1)*(ch*Math.tanh(rho*s+r0)-Math.sinh(r0));return [p0[0]+u*dx,p0[1]+u*dy,w0*ch/Math.cosh(rho*s+r0)];};}
+  const dur=reduced?1:Math.min(2300,Math.max(650,Math.abs(S)*650)); const t0=performance.now();
+  const step=now=>{let t=Math.min(1,(now-t0)/dur); const e=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2; const [cx,cy,w]=interp(e); k=W/w; tx=W/2-cx*k; ty=H/2-cy*k; doRender(); if(t<1) anim=requestAnimationFrame(step); else anim=null;};
+  anim=requestAnimationFrame(step);
+}
+function goPart(id){const p=PARTS[id]; if(!p||!p.fly) return; flyTo(fit(wr(p.fly[0],p.fly[1]))); }
+new ResizeObserver(()=>{ if(!inited){ if(sizeStage()) home(false);} else sizeStage(); }).observe(stage);
+
+/* pointer interaction */
+const ptrs=new Map(); let down=null, moved=0, pinch=null;
+stage.addEventListener('pointerdown',e=>{ if(e.target.closest('.zoomui')) return; stage.setPointerCapture(e.pointerId); ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(anim){cancelAnimationFrame(anim);anim=null;}
+  if(ptrs.size===1){down={x:e.clientX,y:e.clientY,part:e.target.closest('[data-part]')};moved=0;stage.classList.add('drag');$('#hint').hidden=true;}
+  else{down=null;pinch=null;}
+});
+stage.addEventListener('pointermove',e=>{ if(!ptrs.has(e.pointerId)) return; const prev=ptrs.get(e.pointerId); const cur={x:e.clientX,y:e.clientY};
+  if(ptrs.size===1){tx+=cur.x-prev.x;ty+=cur.y-prev.y;moved+=Math.abs(cur.x-prev.x)+Math.abs(cur.y-prev.y);ptrs.set(e.pointerId,cur);render();}
+  else if(ptrs.size===2){ptrs.set(e.pointerId,cur); const [a,b]=[...ptrs.values()]; const r=stage.getBoundingClientRect(); const mx=(a.x+b.x)/2-r.left,my=(a.y+b.y)/2-r.top,d=Math.hypot(a.x-b.x,a.y-b.y);
+    if(pinch){tx+=mx-pinch.mx;ty+=my-pinch.my;zoomAt(mx,my,d/pinch.d);} pinch={mx,my,d};}
+});
+function endPtr(e){ if(!ptrs.has(e.pointerId)) return; ptrs.delete(e.pointerId); if(ptrs.size<2) pinch=null;
+  if(ptrs.size===0){stage.classList.remove('drag'); if(down&&moved<7&&down.part){const id=down.part.dataset.part; showFicha(id); if(PARTS[id]&&PARTS[id].zoom) goPart(id);} down=null;}
+  else if(ptrs.size===1){const [p]=[...ptrs.values()];down=null;}
+}
+stage.addEventListener('pointerup',endPtr); stage.addEventListener('pointercancel',endPtr);
+stage.addEventListener('wheel',e=>{e.preventDefault(); if(anim){cancelAnimationFrame(anim);anim=null;} const r=stage.getBoundingClientRect(); const d=e.deltaMode===1?e.deltaY*16:e.deltaY; zoomAt(e.clientX-r.left,e.clientY-r.top,Math.exp(-d*.0018)); $('#hint').hidden=true;},{passive:false});
+stage.addEventListener('dblclick',e=>{const r=stage.getBoundingClientRect(); animZoom(e.clientX-r.left,e.clientY-r.top,2.5);});
+function animZoom(sx,sy,f){const target=clampK(k*f); const wx=(sx-tx)/k, wy=(sy-ty)/k; const cx=(W/2-tx)/k, cy=(H/2-ty)/k; const nk=target; const ncx=wx-(sx-W/2)/nk, ncy=wy-(sy-H/2)/nk; flyTo({k:nk,cx:ncx,cy:ncy});}
+$('#zin').addEventListener('click',()=>animZoom(W/2,H/2,2.2));
+$('#zout').addEventListener('click',()=>animZoom(W/2,H/2,1/2.2));
+$('#zhome').addEventListener('click',()=>{home(true);showFicha('planta');});
+stage.addEventListener('keydown',e=>{const m={ArrowLeft:[60,0],ArrowRight:[-60,0],ArrowUp:[0,60],ArrowDown:[0,-60]};
+  if(e.key==='+'||e.key==='='){animZoom(W/2,H/2,1.8);e.preventDefault();}
+  else if(e.key==='-'||e.key==='_'){animZoom(W/2,H/2,1/1.8);e.preventDefault();}
+  else if(e.key==='0'){home(true);}
+  else if(m[e.key]){tx+=m[e.key][0];ty+=m[e.key][1];render();e.preventDefault();}});
+
+/* route + ficha */
+const ROUTE=[['planta','Planta'],['hoja','Hoja'],['corte','Corte de hoja'],['estoma','Estoma'],['celula','Célula'],['cloroplasto','Cloroplasto'],['grana','Grana · fase luminosa'],['estroma','Estroma · fase no luminosa'],['mitocondria','Mitocondria'],['crestas','Crestas · ATP']];
+$('#route').innerHTML=ROUTE.map(([id,t],i)=>`<button data-go="${id}" style="--c:${PARTS[id].c}"><b>${i+1}</b><i></i>${t}</button>`).join('');
+$('#route').addEventListener('click',e=>{const b=e.target.closest('[data-go]'); if(!b) return; showFicha(b.dataset.go); goPart(b.dataset.go); $('#hint').hidden=true;});
+const LEG=`<div class="legend">
+ <div><svg viewBox="-16 -10 32 20"><use href="#mCO2"/></svg>CO₂</div>
+ <div><svg viewBox="-16 -10 32 20"><use href="#mO2"/></svg>O₂</div>
+ <div><svg viewBox="-16 -10 32 20"><use href="#mH2O"/></svg>H₂O</div>
+ <div><svg viewBox="-16 -12 32 24"><use href="#mGlu"/></svg>Glucosa</div>
+ <div><svg viewBox="-20 -10 40 20"><use href="#mATP"/></svg>ATP</div>
+ <div><svg viewBox="-24 -10 48 20"><use href="#mNADPH"/></svg>NADPH</div></div>`;
+function showFicha(id){const p=PARTS[id]; if(!p) return;
+  $('#ficha').innerHTML=`<div class="card" style="--c:${p.c}"><div class="band"></div><div class="in">
+   <span class="pill">${p.tag}</span><h3>${p.t}</h3>${p.size?`<span class="size">Tamaño aproximado: ${p.size}</span>`:''}
+   <p>${p.tx}</p><div class="rel"><b>Relación con la energía:</b> ${p.rel}</div>
+   ${p.fly?`<button class="btn solid sm" data-fly="${id}">Acercar aquí</button>`:''}</div></div>
+   <div class="card" style="display:grid;gap:8px"><b>Moléculas que se mueven en la simulación</b>${LEG}</div>`;
+}
+$('#ficha').addEventListener('click',e=>{const b=e.target.closest('[data-fly]'); if(b) goPart(b.dataset.fly);});
+showFicha('planta');
+
+/* =========================================================
+   GLOSARIO
+   ========================================================= */
+const I={
+ cycle:c=>`<circle cx="32" cy="32" r="20" fill="none" stroke="${c}" stroke-width="6" stroke-dasharray="26 6"/><path d="M50 20 l4 12 l-12 -2z" fill="${c}"/><circle cx="32" cy="32" r="6" fill="${c}"/>`,
+ build:c=>`<rect x="8" y="40" width="16" height="16" rx="3" fill="${c}"/><rect x="26" y="40" width="16" height="16" rx="3" fill="${c}" opacity=".7"/><rect x="17" y="22" width="16" height="16" rx="3" fill="${c}" opacity=".85"/><path d="M46 44 L56 34 M56 34 L56 42 M56 34 L48 34" stroke="${c}" stroke-width="4" stroke-linecap="round" fill="none"/><rect x="44" y="8" width="14" height="14" rx="3" fill="${c}" opacity=".5"/>`,
+ brk:c=>`<rect x="8" y="10" width="16" height="16" rx="3" fill="${c}"/><rect x="30" y="18" width="14" height="14" rx="3" fill="${c}" opacity=".7" transform="rotate(20 37 25)"/><rect x="14" y="36" width="14" height="14" rx="3" fill="${c}" opacity=".8" transform="rotate(-25 21 43)"/><rect x="40" y="40" width="12" height="12" rx="3" fill="${c}" opacity=".6" transform="rotate(35 46 46)"/><path d="M50 8 l-4 8 h4 l-4 8" stroke="#e9a800" stroke-width="3" fill="none"/>`,
+ leafsun:c=>`<circle cx="16" cy="16" r="9" fill="#fcc419"/><path d="M14 54 C20 30 40 20 58 22 C54 42 38 56 14 54Z" fill="${c}"/><path d="M14 54 C30 44 44 32 58 22" stroke="#fff" stroke-width="2" fill="none" opacity=".7"/>`,
+ mito:c=>`<rect x="6" y="18" width="52" height="28" rx="14" fill="${c}" opacity=".25" stroke="${c}" stroke-width="3"/><path d="M14 32 l6 -9 l6 18 l6 -18 l6 18 l6 -18 l6 9" stroke="${c}" stroke-width="3" fill="none" stroke-linejoin="round"/>`,
+ chloro:c=>`<ellipse cx="32" cy="32" rx="26" ry="17" fill="${c}" opacity=".3" stroke="${c}" stroke-width="3"/>${[18,30,42].map(x=>`<rect x="${x-5}" y="22" width="10" height="4" rx="2" fill="${c}"/><rect x="${x-5}" y="28" width="10" height="4" rx="2" fill="${c}"/><rect x="${x-5}" y="34" width="10" height="4" rx="2" fill="${c}"/>`).join('')}`,
+ star:c=>`<path d="M32 6 L38 24 L57 24 L42 36 L48 55 L32 44 L16 55 L22 36 L7 24 L26 24Z" fill="${c}"/><circle cx="32" cy="31" r="6" fill="#d3f9d8"/>`,
+ stack:c=>`${[14,22,30,38,46].map(y=>`<rect x="14" y="${y}" width="36" height="6" rx="3" fill="${c}"/>`).join('')}`,
+ drops:c=>`<rect x="6" y="12" width="52" height="40" rx="20" fill="${c}" opacity=".25"/><circle cx="22" cy="30" r="4" fill="${c}"/><circle cx="36" cy="38" r="3" fill="${c}"/><circle cx="42" cy="24" r="3.5" fill="${c}"/>`,
+ stoma:c=>`<path d="M32 10 C14 10 8 26 8 32 C8 40 14 54 32 54 C26 46 24 18 32 10Z" fill="${c}"/><path d="M32 10 C50 10 56 26 56 32 C56 40 50 54 32 54 C38 46 40 18 32 10Z" fill="${c}"/><ellipse cx="32" cy="32" rx="3" ry="16" fill="#1b3a2a"/>`,
+ folds:c=>`<path d="M6 50 V14 h8 v28 h8 V14 h8 v28 h8 V14 h8 v28 h8 V14" stroke="${c}" stroke-width="4" fill="none" stroke-linejoin="round"/>`,
+ battery:c=>`<rect x="6" y="18" width="46" height="28" rx="5" fill="none" stroke="${c}" stroke-width="4"/><rect x="52" y="26" width="6" height="12" rx="2" fill="${c}"/><rect x="11" y="23" width="11" height="18" rx="2" fill="${c}"/><rect x="24" y="23" width="11" height="18" rx="2" fill="${c}"/><rect x="37" y="23" width="11" height="18" rx="2" fill="${c}"/>`,
+ batlow:c=>`<rect x="6" y="18" width="46" height="28" rx="5" fill="none" stroke="${c}" stroke-width="4"/><rect x="52" y="26" width="6" height="12" rx="2" fill="${c}"/><rect x="11" y="23" width="11" height="18" rx="2" fill="${c}"/><rect x="24" y="23" width="11" height="18" rx="2" fill="${c}"/>`,
+ truck:c=>`<rect x="4" y="20" width="34" height="24" rx="3" fill="${c}"/><path d="M38 28 h12 l8 9 v7 h-20z" fill="${c}" opacity=".75"/><circle cx="14" cy="48" r="6" fill="#343a40"/><circle cx="46" cy="48" r="6" fill="#343a40"/><circle cx="16" cy="32" r="4" fill="#fcc419"/><circle cx="27" cy="32" r="4" fill="#fff"/>`,
+ hex:c=>`<polygon points="32,6 54,19 54,45 32,58 10,45 10,19" fill="${c}" opacity=".85" stroke="#8a6500" stroke-width="3"/><text x="32" y="38" text-anchor="middle" ${F} font-size="13" font-weight="700" fill="#5c4300">C₆</text>`,
+ o2:c=>`<circle cx="23" cy="32" r="14" fill="${c}"/><circle cx="41" cy="32" r="14" fill="${c}"/><circle cx="18" cy="26" r="4" fill="#fff" opacity=".6"/>`,
+ co2:c=>`<circle cx="13" cy="32" r="10" fill="#e03131"/><circle cx="51" cy="32" r="10" fill="#e03131"/><circle cx="32" cy="32" r="13" fill="${c}"/>`,
+ h2o:c=>`<circle cx="32" cy="28" r="14" fill="#e03131"/><circle cx="16" cy="42" r="9" fill="#fff" stroke="${c}" stroke-width="3"/><circle cx="48" cy="42" r="9" fill="#fff" stroke="${c}" stroke-width="3"/>`,
+ chain:c=>`${[10,24,38,52].map((x,i)=>`<polygon transform="translate(${x-10} ${i%2?30:20})" points="10,0 20,6 20,18 10,24 0,18 0,6" fill="${c}" stroke="#8a6500" stroke-width="2"/>`).join('')}`,
+ rocks:c=>`<circle cx="18" cy="40" r="10" fill="${c}"/><circle cx="40" cy="22" r="8" fill="#e03131"/><circle cx="46" cy="44" r="9" fill="${c}" opacity=".6"/><rect x="24" y="12" width="10" height="10" fill="#adb5bd"/>`,
+ sun:c=>`<circle cx="32" cy="32" r="13" fill="${c}"/>${Array.from({length:8},(_,i)=>`<line x1="32" y1="6" x2="32" y2="13" stroke="${c}" stroke-width="4" stroke-linecap="round" transform="rotate(${i*45} 32 32)"/>`).join('')}`,
+ bolt:c=>`<path d="M36 4 L14 36 h14 l-6 24 l24 -34 h-14z" fill="${c}"/>`,
+ inarrow:c=>`<rect x="34" y="10" width="24" height="44" rx="6" fill="none" stroke="${c}" stroke-width="3" stroke-dasharray="5 4"/><path d="M4 32 h36 m-10 -10 l10 10 l-10 10" stroke="${c}" stroke-width="5" fill="none" stroke-linecap="round"/>`,
+ outarrow:c=>`<rect x="6" y="10" width="24" height="44" rx="6" fill="none" stroke="${c}" stroke-width="3" stroke-dasharray="5 4"/><path d="M24 32 h36 m-10 -10 l10 10 l-10 10" stroke="${c}" stroke-width="5" fill="none" stroke-linecap="round"/>`,
+ plant:c=>`<path d="M32 58 V28" stroke="#5c940d" stroke-width="4"/><path d="M32 36 C20 36 12 28 12 18 C24 18 32 26 32 36Z" fill="${c}"/><path d="M32 30 C44 30 52 22 52 12 C40 12 32 20 32 30Z" fill="${c}"/><rect x="20" y="54" width="24" height="6" rx="3" fill="#8a5a2b"/>`,
+ deer:c=>`<ellipse cx="30" cy="38" rx="16" ry="9" fill="${c}"/><rect x="40" y="18" width="6" height="18" rx="3" fill="${c}" transform="rotate(15 43 27)"/><ellipse cx="48" cy="17" rx="8" ry="5" fill="${c}"/><path d="M44 12 l-4 -8 M46 12 l2 -9 M40 6 l-4 -2" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>${[18,24,36,42].map(x=>`<rect x="${x-2}" y="42" width="4" height="16" rx="2" fill="${c}"/>`).join('')}`,
+ organic:c=>`<path d="M8 40 l10 -12 l12 12 l12 -12 l12 12" stroke="${c}" stroke-width="5" fill="none" stroke-linejoin="round"/>${[[8,40],[18,28],[30,40],[42,28],[54,40]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="5" fill="#343a40"/>`).join('')}<circle cx="18" cy="18" r="4" fill="#fff" stroke="#868e96" stroke-width="2"/><circle cx="42" cy="18" r="4" fill="#fff" stroke="#868e96" stroke-width="2"/>`,
+ cell:c=>`<rect x="8" y="8" width="48" height="48" rx="10" fill="${c}" opacity=".25" stroke="${c}" stroke-width="4"/><circle cx="24" cy="38" r="7" fill="#9775fa"/><ellipse cx="42" cy="22" rx="8" ry="5" fill="#2f9e44"/><rect x="34" y="38" width="14" height="7" rx="3.5" fill="#ff922b"/>`
+};
+const GL=[
+ ['Metabolismo','Concepto','#0b98ab','cycle','Todas las transformaciones químicas que ocurren dentro de un ser vivo: construir y desarmar moléculas.','Comer, crecer, respirar y moverse dependen del metabolismo.'],
+ ['Anabolismo','Concepto','#2b9348','build','Construir: unir moléculas pequeñas para formar moléculas grandes. Necesita energía.','Fotosíntesis, formar músculo, guardar almidón.'],
+ ['Catabolismo','Concepto','#e8590c','brk','Desarmar: romper moléculas grandes en pequeñas. Libera energía.','Respiración celular, digestión.'],
+ ['Fotosíntesis','Proceso','#2f9e44','leafsun','Proceso en que las plantas fabrican glucosa usando luz, agua y CO₂, y liberan O₂.','Ocurre en los cloroplastos de las hojas.','cloroplasto'],
+ ['Respiración celular','Proceso','#e8590c','mito','Proceso en que la célula desarma la glucosa usando O₂ para obtener ATP. Libera CO₂ y agua.','Ocurre en plantas y animales, en las mitocondrias.','mitocondria'],
+ ['Fase luminosa','Proceso','#e9a800','sun','Primera etapa de la fotosíntesis. Usa luz para romper el agua; forma O₂, ATP y NADPH.','Ocurre en los tilacoides (grana).','grana'],
+ ['Fase no luminosa','Proceso','#46a257','cycle','Segunda etapa de la fotosíntesis (ciclo de Calvin). Usa CO₂, ATP y NADPH para fabricar glucosa.','Ocurre en el estroma.','estroma'],
+ ['Autótrofo','Concepto','#5c940d','plant','Ser vivo que fabrica su propio alimento.','Plantas, algas, algunas bacterias.','planta'],
+ ['Heterótrofo','Concepto','#8a5a2b','deer','Ser vivo que obtiene su alimento comiendo a otros seres vivos.','Huemul, humanos, hongos.'],
+ ['Célula vegetal','Estructura','#6b8f3a','cell','Unidad de la planta. Tiene pared celular, vacuola grande, cloroplastos y mitocondrias.','Mide cerca de 0,05 mm.','celula'],
+ ['Cloroplasto','Estructura','#2b9348','chloro','Organelo verde de las células vegetales donde ocurre la fotosíntesis.','Mide cerca de 5 µm.','cloroplasto'],
+ ['Clorofila','Molécula','#37b24d','star','Pigmento verde que atrapa la energía de la luz. Está en las membranas de los tilacoides.','Le da el color verde a las hojas.','tilacoide'],
+ ['Tilacoide y grana','Estructura','#1b5e2e','stack','Tilacoides: sacos aplanados dentro del cloroplasto. Grana: pilas de tilacoides.','Lugar de la fase luminosa.','grana'],
+ ['Estroma','Estructura','#46a257','drops','Líquido que rodea a los tilacoides dentro del cloroplasto.','Lugar de la fase no luminosa.','estroma'],
+ ['Estoma','Estructura','#0b98ab','stoma','Poro de la hoja rodeado por dos células oclusivas que lo abren y cierran.','Entra CO₂; salen O₂ y vapor de agua.','estoma'],
+ ['Mitocondria','Estructura','#e8590c','mito','Organelo que fabrica ATP mediante la respiración celular. Está en plantas y animales.','Mide cerca de 1–2 µm.','mitocondria'],
+ ['Crestas','Estructura','#d9480f','folds','Pliegues de la membrana interna de la mitocondria. Dan más espacio para fabricar ATP.','Aquí se produce la mayor parte del ATP.','crestas'],
+ ['Matriz mitocondrial','Estructura','#c2410c','drops','Líquido interior de la mitocondria.','Aquí ocurre el ciclo de Krebs y se libera CO₂.','krebs'],
+ ['ATP','Molécula','#6741d9','battery','La “pila” de la célula: molécula que guarda y entrega energía rápidamente. Tiene 3 fosfatos.','Se usa para mover músculos y construir moléculas.','atpsintasa'],
+ ['ADP','Molécula','#9775fa','batlow','Pila descargada: el ATP que perdió un fosfato después de entregar su energía.','Se recarga en la mitocondria y el cloroplasto.'],
+ ['NADH y NADPH','Molécula','#c2255c','truck','Los “camiones” que transportan electrones e hidrógeno. NADPH en la fotosíntesis, NADH en la respiración.','Vacíos se llaman NAD⁺ y NADP⁺.'],
+ ['Glucosa','Molécula','#e0a800','hex','Azúcar de 6 carbonos (C₆H₁₂O₆). Es orgánica y guarda energía química.','Producto de la fotosíntesis; reactivo de la respiración.'],
+ ['Almidón','Molécula','#c9a700','chain','Muchas glucosas unidas en cadena. Es la reserva de energía de la planta.','La papa y el arroz tienen mucho almidón.','almidon'],
+ ['Oxígeno (O₂)','Molécula','#e03131','o2','Gas formado por dos átomos de oxígeno.','Producto de la fotosíntesis; reactivo de la respiración.'],
+ ['Dióxido de carbono (CO₂)','Molécula','#343a40','co2','Gas formado por un carbono y dos oxígenos. Es inorgánico.','Reactivo de la fotosíntesis; producto de la respiración.'],
+ ['Agua (H₂O)','Molécula','#1c7ed6','h2o','Molécula inorgánica formada por dos hidrógenos y un oxígeno.','Reactivo de la fotosíntesis; producto de la respiración.'],
+ ['Materia orgánica','Concepto','#e0a800','organic','Moléculas con esqueleto de carbono unido a hidrógeno, fabricadas por seres vivos.','Glucosa, almidón, proteínas, lípidos.'],
+ ['Materia inorgánica','Concepto','#1c7ed6','rocks','Moléculas simples sin cadenas de carbono-hidrógeno.','Agua, CO₂, O₂, sales minerales.'],
+ ['Energía lumínica','Concepto','#e9a800','sun','Energía que viaja en la luz del sol.','La fase luminosa la transforma en energía química.','sol'],
+ ['Energía química','Concepto','#6741d9','bolt','Energía guardada en las uniones entre átomos de una molécula.','La glucosa y el ATP guardan energía química.'],
+ ['Reactivo','Concepto','#1c7ed6','inarrow','Sustancia que entra a un proceso y se transforma.','CO₂ y agua son reactivos de la fotosíntesis.'],
+ ['Producto','Concepto','#e8590c','outarrow','Sustancia que sale o se forma al final de un proceso.','Glucosa y O₂ son productos de la fotosíntesis.']
+];
+const atlas=$('#atlas');
+atlas.innerHTML=GL.map(([t,cat,c,ic,d,ex,go])=>`<article class="term" data-cat="${cat}" data-q="${(t+' '+d+' '+ex).toLowerCase()}" style="--c:${c}">
+ <div class="art"><svg viewBox="0 0 64 64" aria-hidden="true">${I[ic](c)}</svg><div><small>${cat==='Estructura'?'Estructura / organelo':cat}</small><h3>${t}</h3></div></div>
+ <div class="tx"><p>${d}</p><p class="ex"><b>Ejemplo:</b> ${ex}</p>${go?`<button class="go" data-goto="${go}">Ver en el explorador →</button>`:''}</div></article>`).join('');
+let gcat='todo';
+function filterG(){const q=$('#gsearch').value.trim().toLowerCase(); $$('.term',atlas).forEach(el=>{el.hidden=!((gcat==='todo'||el.dataset.cat===gcat)&&(!q||el.dataset.q.includes(q)));});}
+$('#gfilters').addEventListener('click',e=>{const b=e.target.closest('button[data-cat]'); if(!b) return; gcat=b.dataset.cat; $$('#gfilters button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false')); filterG();});
+$('#gsearch').addEventListener('input',filterG);
+atlas.addEventListener('click',e=>{const b=e.target.closest('[data-goto]'); if(!b) return; showTab('explorador',true); scrollTo({top:$('.tabs').getBoundingClientRect().top+scrollY,behavior:'auto'}); showFicha(b.dataset.goto); setTimeout(()=>goPart(b.dataset.goto),120);});
+
+/* =========================================================
+   METABOLISMO – clasificar
+   ========================================================= */
+const SORT=[['Una planta fabrica glucosa en sus hojas','A'],['Tus células usan glucosa para obtener ATP','C'],['Digerir un pan en el estómago','C'],['Un niño crece y forma músculo','A'],['La papa guarda glucosa como almidón','A'],['Una hoja seca se descompone en el suelo','C'],['Tu cuerpo arma proteínas con aminoácidos','A'],['Usar grasa como energía al correr','C']];
+function buildSort(){ $('#sortlist').innerHTML=SORT.map(([t,a],i)=>`<div class="sitem" data-i="${i}"><span>${t}</span><div class="bts"><button class="btn sm" data-a="A" style="--c:var(--leaf)">Construye (anabolismo)</button><button class="btn sm" data-a="C">Desarma (catabolismo)</button></div><span class="fb" aria-live="polite"></span></div>`).join(''); updScore(); }
+function updScore(){ $('#mscore').textContent=`${$$('.sitem.ok').length} / ${SORT.length} correctas`; }
+$('#sortlist').addEventListener('click',e=>{const b=e.target.closest('[data-a]'); if(!b) return; const it=b.closest('.sitem'); const ok=SORT[it.dataset.i][1]===b.dataset.a;
+  it.classList.toggle('ok',ok); it.classList.toggle('bad',!ok);
+  $('.fb',it).textContent=ok?(b.dataset.a==='A'?'¡Correcto! Une piezas pequeñas y gasta energía.':'¡Correcto! Rompe moléculas grandes y libera energía.'):'Revisa: ¿se forman moléculas más grandes o más pequeñas?'; updScore();});
+$('#mreset').addEventListener('click',buildSort); buildSort();
+
+/* =========================================================
+   ESTOMA
+   ========================================================= */
+(function(){const svg=$('#stomaSvg'); addDefs(svg);
+  let epi=''; for(let r=0;r<4;r++)for(let c=0;c<7;c++){const x=c*80-20+(r%2)*40,y=40+r*62; if(Math.hypot(x+36-260,y+28-160)<110) continue; epi+=`<path d="M${x} ${y+8} q10 -12 36 -6 q28 -4 38 8 q6 22 -4 40 q-26 10 -64 2 q-10 -20 -6 -44z" fill="#f6fcf4" stroke="#a5c9a0" stroke-width="3"/>`;}
+  $('#stEpi').innerHTML=epi;
+  $('#stomaG').innerHTML=`<ellipse id="stPore" cx="260" cy="160" rx="16" ry="62" fill="#27402c" style="transition:transform .8s;transform-box:fill-box;transform-origin:center"/>
+   <g id="gL" style="transition:transform .8s"><path d="M260 90 C200 88 180 130 180 160 C180 196 204 232 260 230 C246 206 240 116 260 90Z" fill="#8fd16a" stroke="#2f7a33" stroke-width="4"/>${[[212,130],[204,165],[216,200],[232,150]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="7" ry="5" fill="#2f9e44"/>`).join('')}</g>
+   <g id="gR" style="transition:transform .8s"><path d="M260 90 C320 88 340 130 340 160 C340 196 316 232 260 230 C274 206 280 116 260 90Z" fill="#8fd16a" stroke="#2f7a33" stroke-width="4"/>${[[308,130],[316,165],[304,200],[288,150]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="7" ry="5" fill="#2f9e44"/>`).join('')}</g>
+   <text x="150" y="255" ${F} font-size="13" font-weight="700" fill="#1b4d2b" text-anchor="middle">Célula oclusiva</text><text x="372" y="255" ${F} font-size="13" font-weight="700" fill="#1b4d2b" text-anchor="middle">Célula oclusiva</text><text x="260" y="76" ${F} font-size="13" font-weight="700" fill="#1b4d2b" text-anchor="middle">Poro</text>`;
+  $('#stGas').innerHTML=particles([['mCO2','M470 60 C400 90 300 120 262 160',3.2,1.3,[0,1.1,2.2]],['mO2','M258 160 C220 200 120 230 40 250',3.2,1.3,[.5,1.6,2.7]],['mH2O','M262 170 C300 210 380 240 480 250',3.6,1.2,[.2,1.4,2.6]]]);
+  let open=true;
+  const set=()=>{ $('#gL').style.transform=open?'translateX(-14px)':'translateX(8px)'; $('#gR').style.transform=open?'translateX(14px)':'translateX(-8px)'; $('#stPore').style.transform=open?'scaleX(1)':'scaleX(.08)';
+    $('#stGas').style.opacity=open?1:0; $('#stGas').style.transition='opacity .5s';
+    $('#stState').textContent=open?'ABIERTO · células oclusivas hinchadas con agua':'CERRADO · células oclusivas sin agua';
+    $('#stToggle').textContent=open?'Cerrar estoma':'Abrir estoma';
+    $('#stText').innerHTML=open?'Abierto (de día y con agua suficiente): entra el CO<sub>2</sub> que necesita la fase no luminosa y salen el O<sub>2</sub> y algo de vapor de agua.':'Cerrado (de noche o con sequía): la planta ahorra agua, pero casi no entra CO<sub>2</sub>. Sin CO<sub>2</sub>, la fase no luminosa se frena y se fabrica menos glucosa.'; };
+  $('#stToggle').addEventListener('click',()=>{open=!open;set();}); set();
+})();
+
+/* =========================================================
+   FASE LUMINOSA / OSCURA diagrams + steppers
+   ========================================================= */
+(function(){const svg=$('#lzSvg'); addDefs(svg,`<marker id="arY" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#e9a800"/></marker><marker id="arG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#2b7a3d"/></marker>`);
+  svg.insertAdjacentHTML('beforeend',`
+  <rect width="760" height="160" fill="#eef8e4"/><rect y="160" width="760" height="50" fill="#9fd48a"/><rect y="210" width="760" height="180" fill="#d6f0c6"/>
+  <line x1="0" y1="160" x2="760" y2="160" stroke="#2b7a3d" stroke-width="4"/><line x1="0" y1="210" x2="760" y2="210" stroke="#2b7a3d" stroke-width="4"/>
+  <text x="740" y="150" text-anchor="end" ${F} font-size="13" font-weight="700" fill="#2b7a3d" letter-spacing="1">ESTROMA</text>
+  <text x="740" y="200" text-anchor="end" ${F} font-size="12" font-weight="700" fill="#1b4d2b" letter-spacing="1">MEMBRANA DEL TILACOIDE</text>
+  <text x="740" y="378" text-anchor="end" ${F} font-size="13" font-weight="700" fill="#2b7a3d" letter-spacing="1">INTERIOR DEL TILACOIDE</text>
+  <g id="lz1"><circle cx="70" cy="62" r="34" fill="#ffd43b"/><g stroke="#fab005" stroke-width="5" stroke-linecap="round">${Array.from({length:8},(_,i)=>`<line x1="70" y1="16" x2="70" y2="6" transform="rotate(${i*45} 70 62)"/>`).join('')}</g>
+    <path class="flow" d="M100 80 Q140 70 150 110 T215 168" stroke="#e9a800" stroke-width="5" fill="none" marker-end="url(#arY)"/><path class="flow" d="M104 60 Q220 40 300 90 T410 168" stroke="#e9a800" stroke-width="5" fill="none" marker-end="url(#arY)"/>
+    <g class="pulse"><path d="M230 160 l10 -18 l12 10 l14 -6 l2 16 l16 8 l-12 12 l6 16 l-16 0 l-10 14 l-10 -14 l-16 0 l6 -16 l-12 -12 l16 -8z" transform="translate(-10 0)" fill="#2f9e44" stroke="#1b5e2e" stroke-width="2"/></g>
+    <g class="pulse"><path d="M420 160 l10 -18 l12 10 l14 -6 l2 16 l16 8 l-12 12 l6 16 l-16 0 l-10 14 l-10 -14 l-16 0 l6 -16 l-12 -12 l16 -8z" transform="translate(-10 0)" fill="#2f9e44" stroke="#1b5e2e" stroke-width="2"/></g>
+    <text x="236" y="248" text-anchor="middle" ${F} font-size="13" font-weight="700" fill="#1b4d2b">Clorofila</text><text x="426" y="248" text-anchor="middle" ${F} font-size="13" font-weight="700" fill="#1b4d2b">Clorofila</text></g>
+  <g id="lz2"><use href="#mH2O" transform="translate(150 320) scale(2)"/><text x="150" y="362" text-anchor="middle" ${F} font-size="14" font-weight="700" fill="#1c7ed6">H₂O</text>
+    <path d="M180 318 L222 300" stroke="#1b4d2b" stroke-width="3" marker-end="url(#arG)"/>
+    <use href="#mO2" transform="translate(70 290) scale(1.6)"/><text x="70" y="262" text-anchor="middle" ${F} font-size="13" font-weight="700" fill="#e03131">O₂ sale al aire</text><path d="M130 312 L92 296" stroke="#e03131" stroke-width="3" marker-end="url(#arG)"/>
+    <use href="#mH" transform="translate(250 300) scale(1.4)"/><use href="#mH" transform="translate(280 320) scale(1.4)"/><use href="#mE" transform="translate(236 222) scale(1.3)"/>
+    <path class="flowS" d="M240 290 L238 232" stroke="#e67700" stroke-width="3" fill="none"/>
+    <path class="flowS" d="M250 190 C300 180 360 180 410 190" stroke="#e67700" stroke-width="3" fill="none"/></g>
+  <g id="lz3"><g transform="translate(590 185)"><rect x="-22" y="-26" width="44" height="52" rx="10" fill="#b197fc" stroke="#6741d9" stroke-width="3"/><g class="spin"><circle r="30" cx="0" cy="-58" fill="#d0bfff" stroke="#6741d9" stroke-width="3"/><path d="M0 -88 V-28 M-30 -58 H30" stroke="#6741d9" stroke-width="3"/></g></g>
+    <text x="590" y="246" text-anchor="middle" ${F} font-size="13" font-weight="700" fill="#4521a8">ATP sintasa</text>
+    <use href="#mH" transform="translate(560 300) scale(1.4)"/><use href="#mH" transform="translate(600 320) scale(1.4)"/><use href="#mH" transform="translate(630 290) scale(1.4)"/><path d="M590 280 L590 222" stroke="#495057" stroke-width="3" marker-end="url(#arG)"/>
+    <use href="#mADP" transform="translate(660 60) scale(1.5)"/><path d="M660 76 L620 108" stroke="#6741d9" stroke-width="3" marker-end="url(#arG)"/>
+    <use href="#mATP" transform="translate(540 60) scale(1.7)"/>
+    <use href="#mNADP" transform="translate(360 50) scale(1.4)"/><path d="M372 66 L420 110" stroke="#c2255c" stroke-width="3" marker-end="url(#arG)"/><use href="#mNADPH" transform="translate(460 118) scale(1.5)"/></g>
+  <g id="lz4"><path class="flow" d="M500 118 C560 130 640 120 720 96" stroke="#2b7a3d" stroke-width="5" fill="none" marker-end="url(#arG)"/><path class="flow" d="M560 38 C620 30 680 40 720 70" stroke="#2b7a3d" stroke-width="5" fill="none" marker-end="url(#arG)"/>
+    <text x="740" y="30" text-anchor="end" ${FD} font-size="16" font-weight="800" fill="#1b4d2b">→ a la fase no luminosa</text></g>`);
+})();
+(function(){const svg=$('#dkSvg'); addDefs(svg,`<marker id="arO" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#e8a317"/></marker><marker id="arK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#1b4d2b"/></marker>`);
+  const cx=400,cy=200,r=112;
+  const arc=(a0,a1)=>{const p=a=>[cx+r*Math.cos(a*Math.PI/180),cy+r*Math.sin(a*Math.PI/180)];const [x0,y0]=p(a0),[x1,y1]=p(a1);return `M${x0.toFixed(1)} ${y0.toFixed(1)} A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;};
+  const node=(n,x,y)=>`<circle cx="${x}" cy="${y}" r="22" fill="#2f9e44" stroke="#fff" stroke-width="4"/><text x="${x}" y="${y+6}" text-anchor="middle" ${FD} font-size="18" font-weight="800" fill="#fff">${n}</text>`;
+  svg.insertAdjacentHTML('beforeend',`<rect width="760" height="390" fill="#e8f6dc"/>
+   <text x="20" y="30" ${F} font-size="13" font-weight="700" fill="#2b7a3d" letter-spacing="1">ESTROMA DEL CLOROPLASTO</text>
+   <g stroke="#e8a317" stroke-width="12" fill="none" marker-end="url(#arO)" opacity=".85"><path d="${arc(-80,-10)}"/><path d="${arc(10,80)}"/><path d="${arc(100,170)}"/><path d="${arc(190,260)}"/></g>
+   <g id="dk1">${node(1,cx,cy-r)}<use href="#mCO2" transform="translate(${cx} 40) scale(1.8)"/><path d="M${cx} 58 L${cx} ${cy-r-26}" stroke="#1b4d2b" stroke-width="3" marker-end="url(#arK)"/><text x="${cx+40}" y="46" ${F} font-size="14" font-weight="700" fill="#343a40">CO₂ desde el estoma</text></g>
+   <g id="dk2">${node(2,cx+r,cy)}<g transform="translate(${cx+r+40} ${cy-30})">${[0,1,2,3,4].map(i=>`<circle cx="${i*16}" cy="0" r="7" fill="#495057"/>`).join('')}<path d="M0 0 H64" stroke="#495057" stroke-width="3"/><circle cx="80" cy="0" r="8" fill="#343a40" stroke="#e03131" stroke-width="3"/></g><text x="${cx+r+40}" y="${cy+14}" ${F} font-size="13" font-weight="700" fill="#343a40">el carbono queda</text><text x="${cx+r+40}" y="${cy+30}" ${F} font-size="13" font-weight="700" fill="#343a40">enganchado</text></g>
+   <g id="dk3">${node(3,cx,cy+r)}<use href="#mATP" transform="translate(150 290) scale(1.6)"/><use href="#mNADPH" transform="translate(150 330) scale(1.5)"/><path d="M190 305 C250 320 310 320 ${cx-26} ${cy+r}" stroke="#1b4d2b" stroke-width="3" fill="none" marker-end="url(#arK)"/>
+     <text x="60" y="262" ${F} font-size="13" font-weight="700" fill="#1b4d2b">desde la fase luminosa</text>
+     <use href="#mADP" transform="translate(560 350) scale(1.5)"/><use href="#mNADP" transform="translate(650 350) scale(1.4)"/><path d="M${cx+20} ${cy+r+16} C470 350 500 355 525 352" stroke="#1b4d2b" stroke-width="3" fill="none" marker-end="url(#arK)"/><text x="610" y="385" text-anchor="middle" ${F} font-size="13" font-weight="700" fill="#1b4d2b">vuelven a recargarse</text></g>
+   <g id="dk4">${node(4,cx-r,cy)}<use href="#mGlu" transform="translate(130 150) scale(2.6)"/><path d="M${cx-r-24} ${cy-6} C230 170 200 160 168 155" stroke="#1b4d2b" stroke-width="3" fill="none" marker-end="url(#arK)"/><text x="130" y="200" text-anchor="middle" ${FD} font-size="16" font-weight="800" fill="#8a6500">Glucosa</text><text x="130" y="218" text-anchor="middle" ${F} font-size="12" fill="#5c4300">C₆H₁₂O₆</text></g>
+   <text x="${cx}" y="${cy-4}" text-anchor="middle" ${FD} font-size="17" font-weight="800" fill="#8a6500">Ciclo de</text><text x="${cx}" y="${cy+16}" text-anchor="middle" ${FD} font-size="17" font-weight="800" fill="#8a6500">Calvin</text>`);
+})();
+function stepper(key,n){
+  const list=$('#'+key+'Steps'), svg=$('#'+key+'Svg'); let timer=null;
+  const set=s=>{ $$('li',list).forEach(li=>li.classList.toggle('on',+li.dataset.s===s));
+    for(let i=1;i<=n;i++){const g=svg.querySelector('#'+key+i); if(g) g.setAttribute('class',s===0||s===i?'lit':'dim');} };
+  list.addEventListener('click',e=>{const li=e.target.closest('li'); if(!li) return; clearInterval(timer); set(+li.dataset.s);});
+  $(`[data-all="${key}"]`).addEventListener('click',()=>{clearInterval(timer);set(0);});
+  $(`[data-play="${key}"]`).addEventListener('click',()=>{clearInterval(timer); let s=1; set(s); timer=setInterval(()=>{s++; if(s>n){clearInterval(timer);set(0);return;} set(s);},2600);});
+  set(1);
+}
+stepper('lz',4); stepper('dk',4);
+
+/* =========================================================
+   ATP / NADH / ORGANICO
+   ========================================================= */
+(function(){const svg=$('#atpSvg');
+  svg.innerHTML=`<rect width="520" height="230" fill="#f6f2ff"/>
+   <g><polygon points="40,70 70,52 100,70 100,104 70,122 40,104" fill="#74c0fc" stroke="#1971c2" stroke-width="3"/><polygon points="100,70 126,58 142,84 126,110 100,104" fill="#a5d8ff" stroke="#1971c2" stroke-width="3"/><text x="82" y="146" text-anchor="middle" ${F} font-size="14" font-weight="700" fill="#1971c2">Adenina</text></g>
+   <line x1="142" y1="88" x2="170" y2="110" stroke="#495057" stroke-width="4"/>
+   <g><polygon points="170,110 200,94 226,112 216,142 180,142" fill="#ffc9c9" stroke="#e03131" stroke-width="3"/><text x="198" y="170" text-anchor="middle" ${F} font-size="14" font-weight="700" fill="#c92a2a">Ribosa</text></g>
+   <line x1="226" y1="112" x2="258" y2="112" stroke="#495057" stroke-width="4"/>
+   <g><circle cx="280" cy="112" r="22" fill="#ffd43b" stroke="#e67700" stroke-width="3"/><text x="280" y="118" text-anchor="middle" ${FD} font-size="18" font-weight="800" fill="#7a4a00">P</text></g>
+   <line x1="302" y1="112" x2="326" y2="112" stroke="#495057" stroke-width="4"/>
+   <g><circle cx="348" cy="112" r="22" fill="#ffd43b" stroke="#e67700" stroke-width="3"/><text x="348" y="118" text-anchor="middle" ${FD} font-size="18" font-weight="800" fill="#7a4a00">P</text></g>
+   <path id="bond" d="M370 112 l6 -8 l6 16 l6 -16 l6 8" stroke="#6741d9" stroke-width="4" fill="none" style="transition:opacity .4s"/>
+   <g id="p3" style="transition:transform .7s cubic-bezier(.3,1.4,.5,1)"><circle cx="418" cy="112" r="22" fill="#ffd43b" stroke="#e67700" stroke-width="3"/><text x="418" y="118" text-anchor="middle" ${FD} font-size="18" font-weight="800" fill="#7a4a00">P</text></g>
+   <g id="boom" opacity="0" style="transition:opacity .4s"><path d="M392 60 l-10 -26 l18 10 l6 -24 l8 24 l18 -10 l-10 26" fill="#fcc419" stroke="#e67700" stroke-width="2"/><text x="400" y="200" text-anchor="middle" ${FD} font-size="16" font-weight="800" fill="#6741d9">¡energía para la célula!</text></g>
+   <text x="348" y="170" text-anchor="middle" ${F} font-size="13" font-weight="700" fill="#5f3dc4">3 fosfatos</text>
+   <text x="386" y="86" text-anchor="middle" ${F} font-size="11" font-weight="700" fill="#5f3dc4">enlace con energía</text>`;
+  let charged=true;
+  const set=()=>{ $('#p3').style.transform=charged?'translate(0,0)':'translate(70px,40px)'; $('#bond').style.opacity=charged?1:0; $('#boom').setAttribute('opacity',charged?0:1);
+    $('#atpState').textContent=charged?'ATP · pila cargada (3 fosfatos)':'ADP + P · pila descargada (2 fosfatos + 1 suelto)'; };
+  $('#atpUse').addEventListener('click',()=>{charged=false;set();}); $('#atpCharge').addEventListener('click',()=>{charged=true;set();}); set();
+})();
+(function(){const svg=$('#nadSvg'); addDefs(svg);
+  svg.insertAdjacentHTML('beforeend',`<rect width="520" height="230" fill="#fff0f6"/><rect y="176" width="520" height="54" fill="#dee2e6"/><path d="M0 203 H520" stroke="#fff" stroke-width="4" stroke-dasharray="26 18"/>
+   <g id="truck" style="transition:transform 1s ease-in-out">
+    <rect x="120" y="70" width="200" height="96" rx="10" fill="#c2255c"/><path d="M320 100 h60 l40 40 v26 h-100z" fill="#e64980"/><rect x="336" y="108" width="40" height="26" rx="4" fill="#fff0f6"/>
+    <circle cx="170" cy="172" r="20" fill="#343a40"/><circle cx="170" cy="172" r="8" fill="#adb5bd"/><circle cx="370" cy="172" r="20" fill="#343a40"/><circle cx="370" cy="172" r="8" fill="#adb5bd"/>
+    <g id="cargo" style="transition:opacity .5s"><use href="#mE" transform="translate(160 118) scale(2.2)"/><use href="#mE" transform="translate(210 118) scale(2.2)"/><use href="#mH" transform="translate(265 118) scale(2.2)"/></g>
+    <text id="tlabel" x="220" y="96" text-anchor="middle" ${FD} font-size="18" font-weight="800" fill="#fff">NAD⁺</text></g>
+   <text x="20" y="30" ${F} font-size="13" font-weight="700" fill="#a61e4d">Carga: electrones (e⁻) + hidrógeno (H⁺)</text>`);
+  let loaded=false;
+  const set=()=>{ $('#cargo').style.opacity=loaded?1:0; $('#tlabel').textContent=loaded?'NADH':'NAD⁺'; $('#truck').style.transform=loaded?'translateX(40px)':'translateX(-40px)';
+    $('#nadState').textContent=loaded?'NADH · camión cargado':'NAD⁺ · camión vacío'; };
+  $('#nadLoad').addEventListener('click',()=>{loaded=true;set();}); $('#nadUnload').addEventListener('click',()=>{loaded=false;set();}); set();
+})();
+(function(){const svg=$('#orgSvg'); addDefs(svg,`<marker id="arB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#495057"/></marker>`);
+  const cap=(x,y,t,s)=>`<text x="${x}" y="${y}" text-anchor="middle" ${FD} font-size="16" font-weight="800" fill="#1b2a22">${t}</text><text x="${x}" y="${y+18}" text-anchor="middle" ${F} font-size="12" fill="#51645a">${s}</text>`;
+  const C_=(x,y)=>`<circle cx="${x}" cy="${y}" r="9" fill="#343a40"/>`, H_=(x,y)=>`<circle cx="${x}" cy="${y}" r="6" fill="#fff" stroke="#868e96" stroke-width="2"/>`, O_=(x,y)=>`<circle cx="${x}" cy="${y}" r="9" fill="#e03131"/>`;
+  svg.insertAdjacentHTML('beforeend',`<rect width="980" height="360" fill="#fbfdf8"/>
+   <rect x="10" y="10" width="420" height="340" rx="16" fill="#e7f5ff"/><rect x="550" y="10" width="420" height="340" rx="16" fill="#fff9db"/>
+   <text x="220" y="42" text-anchor="middle" ${FD} font-size="20" font-weight="800" fill="#1971c2">INORGÁNICA</text><text x="760" y="42" text-anchor="middle" ${FD} font-size="20" font-weight="800" fill="#a37b00">ORGÁNICA</text>
+   <use href="#mH2O" transform="translate(110 110) scale(2.6)"/>${cap(110,165,'Agua','H₂O')}
+   <use href="#mCO2" transform="translate(320 110) scale(2.4)"/>${cap(320,165,'Dióxido de carbono','CO₂')}
+   <use href="#mO2" transform="translate(110 250) scale(2.6)"/>${cap(110,305,'Oxígeno','O₂')}
+   <g transform="translate(290 225)">${[0,1,2].map(i=>[0,1,2].map(j=>`<circle cx="${i*22}" cy="${j*22}" r="${(i+j)%2?7:10}" fill="${(i+j)%2?'#adb5bd':'#74c0fc'}"/>`).join('')).join('')}</g>${cap(320,305,'Sales minerales','ej: NaCl')}
+   <g transform="translate(700 110)"><polygon points="0,-40 35,-20 35,20 0,40 -35,20 -35,-20" fill="#ffe066" stroke="#a37b00" stroke-width="3"/>${[[0,-40],[35,-20],[35,20],[0,40],[-35,20]].map(([x,y])=>C_(x,y)).join('')}${O_(-35,-20)}${H_(52,-30)}${H_(52,30)}${H_(-52,30)}${H_(0,-60)}</g>${cap(700,175,'Glucosa','C₆H₁₂O₆')}
+   <g transform="translate(880 100)">${[0,1,2].map(i=>`<polygon transform="translate(${(i-1)*34} ${i%2?10:-10}) scale(.4)" points="0,-40 35,-20 35,20 0,40 -35,20 -35,-20" fill="#ffe066" stroke="#a37b00" stroke-width="6"/>`).join('')}</g>${cap(880,175,'Almidón','muchas glucosas')}
+   <g transform="translate(640 240)">${[0,1,2,3,4,5].map(i=>`<circle cx="${i*20}" cy="${Math.sin(i)*10}" r="9" fill="${['#ff8787','#74c0fc','#8ce99a','#ffd43b','#b197fc','#ff8787'][i]}" stroke="#495057" stroke-width="1.5"/>`).join('')}</g>${cap(690,305,'Proteína','cadena de aminoácidos')}
+   <g transform="translate(850 225)"><circle cx="0" cy="0" r="12" fill="#ffa8a8" stroke="#c92a2a" stroke-width="2"/><path d="M-6 10 l-6 10 l6 10 l-6 10 l6 10 M6 10 l6 10 l-6 10 l6 10 l-6 10" stroke="#495057" stroke-width="4" fill="none"/></g>${cap(850,305,'Lípido','grasas y aceites')}
+   <path d="M440 120 H540" stroke="#2b9348" stroke-width="6" marker-end="url(#arB)"/><text x="490" y="105" text-anchor="middle" ${F} font-size="13" font-weight="700" fill="#2b9348">Fotosíntesis</text>
+   <path d="M540 250 H440" stroke="#e8590c" stroke-width="6" marker-end="url(#arB)"/><text x="490" y="235" text-anchor="middle" ${F} font-size="13" font-weight="700" fill="#e8590c">Respiración</text>`);
+})();
+
+/* =========================================================
+   MITOCONDRIA 5 fases
+   ========================================================= */
+const PH=[
+ {n:'Fase 1',of:'Glucólisis',s:'Partir la glucosa',d:'Citoplasma (fuera de la mitocondria)',in:['Glucosa','2 ADP + P'],out:['2 trozos de glucosa (piruvato)','2 ATP','2 NADH'],atp:2,tx:'La glucosa (6 carbonos) se parte por la mitad. Todavía no se necesita oxígeno. Se obtiene un poco de ATP.'},
+ {n:'Fase 2',of:'Oxidación del piruvato',s:'Preparar los trozos',d:'Entrada a la mitocondria (matriz)',in:['2 trozos de glucosa (piruvato)'],out:['2 CO₂','2 NADH','2 trozos listos (acetil-CoA)'],atp:0,tx:'Los trozos entran a la mitocondria. Cada uno pierde un carbono, que sale como CO₂, y quedan preparados para la rueda.'},
+ {n:'Fase 3',of:'Ciclo de Krebs',s:'La rueda que desarma',d:'Matriz de la mitocondria',in:['2 trozos listos (acetil-CoA)'],out:['4 CO₂','2 ATP','6 NADH y 2 FADH₂ (camiones cargados)'],atp:2,tx:'Una rueda de reacciones termina de desarmar los trozos. Todo el carbono sale como CO₂ (el que exhalas) y se cargan muchos camiones.'},
+ {n:'Fase 4',of:'Cadena transportadora de electrones',s:'Pasar la carga en cadena',d:'Crestas (membrana interna)',in:['NADH y FADH₂ cargados','O₂ (6 moléculas)'],out:['H₂O (agua)','NAD⁺ (camiones vacíos)','Hidrógenos acumulados'],atp:0,tx:'Los camiones descargan sus electrones, que pasan de mano en mano por la membrana. Al final el O₂ los recibe y se forma agua. Sin O₂ esta fase se detiene.'},
+ {n:'Fase 5',of:'Síntesis de ATP (ATP sintasa)',s:'La turbina de ATP',d:'Crestas (ATP sintasa)',in:['Hidrógenos que regresan','ADP + P'],out:['≈ 32 ATP'],atp:32,tx:'Los hidrógenos acumulados regresan pasando por una “turbina” (ATP sintasa). Al girar, arma muchísimas pilas de ATP.'}
+];
+(function(){const svg=$('#mitoSvg'); addDefs(svg,`<marker id="arM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#495057"/></marker>`);
+  const tag=(x,y,n)=>`<circle cx="${x}" cy="${y}" r="16" fill="#e8590c" stroke="#fff" stroke-width="3"/><text x="${x}" y="${y+6}" text-anchor="middle" ${FD} font-size="16" font-weight="800" fill="#fff">${n}</text>`;
+  svg.insertAdjacentHTML('beforeend',`<rect width="900" height="430" fill="#fff8ef"/>
+   <text x="20" y="30" ${F} font-size="13" font-weight="700" fill="#a0521b" letter-spacing="1">CITOPLASMA</text>
+   <rect x="270" y="40" width="615" height="350" rx="175" fill="#ffe3c2" stroke="#d9480f" stroke-width="7"/>
+   <rect x="300" y="70" width="555" height="290" rx="145" fill="#ffb366" stroke="#e8590c" stroke-width="5"/>
+   ${[560,700].map(x=>`<rect x="${x-18}" y="65" width="36" height="190" rx="18" fill="#ffe3c2" stroke="#e8590c" stroke-width="5"/><rect x="${x-14}" y="60" width="28" height="16" fill="#ffe3c2"/>`).join('')}
+   ${[630,770].map(x=>`<rect x="${x-18}" y="175" width="36" height="190" rx="18" fill="#ffe3c2" stroke="#e8590c" stroke-width="5"/><rect x="${x-14}" y="354" width="28" height="16" fill="#ffe3c2"/>`).join('')}
+   <text x="578" y="412" text-anchor="middle" ${F} font-size="13" font-weight="700" fill="#a0521b" letter-spacing="1">MITOCONDRIA</text>
+   <g id="m1"><use href="#mGlu" transform="translate(70 200) scale(2.6)"/><text x="70" y="252" text-anchor="middle" ${F} font-size="13" font-weight="700" fill="#8a6500">Glucosa</text>
+     <path d="M104 200 L150 200" stroke="#495057" stroke-width="3" marker-end="url(#arM)"/><use href="#mPir" transform="translate(185 170) scale(2)"/><use href="#mPir" transform="translate(185 230) scale(2)"/>
+     <use href="#mATP" transform="translate(110 320) scale(1.4)"/><use href="#mNADH" transform="translate(200 320) scale(1.4)"/>${tag(40,140,1)}</g>
+   <g id="m2"><path d="M210 200 L322 200" stroke="#495057" stroke-width="3" marker-end="url(#arM)"/><use href="#mCO2" transform="translate(300 120) scale(1.5)"/><path d="M290 190 L300 140" stroke="#495057" stroke-width="2" marker-end="url(#arM)"/><use href="#mNADH" transform="translate(335 290) scale(1.3)"/>${tag(250,160,2)}</g>
+   <g id="m3"><circle cx="420" cy="215" r="62" fill="#fff0db" stroke="#c2410c" stroke-width="3"/><g class="spin"><circle cx="420" cy="215" r="44" fill="none" stroke="#c2410c" stroke-width="8" stroke-dasharray="56 12"/></g>
+     <text x="420" y="212" text-anchor="middle" ${FD} font-size="14" font-weight="800" fill="#8f2d07">Krebs</text><text x="420" y="229" text-anchor="middle" ${F} font-size="11" fill="#8f2d07">(matriz)</text>
+     <use href="#mCO2" transform="translate(395 110) scale(1.4)"/><use href="#mCO2" transform="translate(445 105) scale(1.4)"/><use href="#mATP" transform="translate(470 300) scale(1.3)"/><use href="#mNADH" transform="translate(400 310) scale(1.3)"/>${tag(360,150,3)}</g>
+   <g id="m4"><path class="flowS" d="M540 110 L540 240 M585 240 L585 110 M612 190 L612 330 M648 330 L648 190 M682 110 L682 240 M718 240 L718 110" stroke="#c2255c" stroke-width="4" fill="none"/>
+     <use href="#mE" transform="translate(540 130) scale(1.3)"/><use href="#mE" transform="translate(612 300) scale(1.3)"/><use href="#mE" transform="translate(718 150) scale(1.3)"/>
+     <use href="#mO2" transform="translate(800 105) scale(1.5)"/><path d="M800 120 L800 150" stroke="#495057" stroke-width="2.5" marker-end="url(#arM)"/><use href="#mH2O" transform="translate(800 180) scale(1.6)"/><text x="836" y="186" ${F} font-size="12" font-weight="700" fill="#1c7ed6">agua</text>${tag(520,90,4)}</g>
+   <g id="m5">${[[520,150],[520,210],[748,150],[748,210],[590,300],[808,300]].map(([x,y])=>`<g transform="translate(${x} ${y})"><circle r="11" fill="#9775fa" stroke="#6741d9" stroke-width="2.5"/><path class="spin" d="M-8 0 H8 M0 -8 V8" stroke="#fff" stroke-width="2.5"/></g>`).join('')}
+     ${[[600,130],[660,150],[720,290],[850,250],[860,160]].map(([x,y])=>`<use href="#mATP" transform="translate(${x} ${y}) scale(1.3)"/>`).join('')}${tag(760,380,5)}</g>`);
+  svg.insertAdjacentHTML('beforeend',particles([['mATP','M760 250 C820 240 870 230 930 220',2.6,1.3,[0,.9,1.8]],['mATP','M650 150 C750 90 850 60 930 40',2.8,1.3,[.4,1.3,2.2]]]));
+  $('#phases').innerHTML=PH.map((p,i)=>`<button class="ph" data-p="${i}"><small>${p.n} · ${p.of}</small><strong>${p.s}</strong><span class="atpn">${p.atp?'+'+p.atp+' ATP':'0 ATP directo'}</span></button>`).join('');
+  let cur=0,timer=null;
+  const set=i=>{cur=i; $$('.ph').forEach(b=>b.classList.toggle('on',+b.dataset.p===i));
+    for(let j=0;j<5;j++){svg.querySelector('#m'+(j+1)).setAttribute('class',j===i?'lit':'dim');}
+    const p=PH[i]; $('#phdetail').innerHTML=`<span class="pill" style="--c:var(--mito)">${p.n} · ${p.of}</span><h3 style="font-size:1.5rem">${p.s}</h3><p class="note"><b>¿Dónde?</b> ${p.d}</p><p>${p.tx}</p>
+     <div class="rp"><div class="in"><h4>Entra (reactivos)</h4><div class="chips">${p.in.map(x=>`<span class="chip" style="--c:var(--water)"><i></i>${x}</span>`).join('')}</div></div><div class="out"><h4>Sale (productos)</h4><div class="chips">${p.out.map(x=>`<span class="chip" style="--c:var(--mito)"><i></i>${x}</span>`).join('')}</div></div></div>`;
+    const tot=PH.slice(0,i+1).reduce((a,b)=>a+b.atp,0); $('#atpCount').textContent=(i===4?'≈ ':'')+tot+' ATP'; $('#atpMeter').style.width=(tot/36*100)+'%'; };
+  $('#phases').addEventListener('click',e=>{const b=e.target.closest('.ph'); if(!b) return; clearInterval(timer); set(+b.dataset.p);});
+  $('#mitoPlay').addEventListener('click',()=>{clearInterval(timer); let i=0; set(i); timer=setInterval(()=>{i++; if(i>4){clearInterval(timer);return;} set(i);},2800);});
+  set(0);
+})();
+
+/* =========================================================
+   CASOS
+   ========================================================= */
+const CASES=[
+ {t:'La planta del armario',c:'#6741d9',ic:'plant',tags:['Fotosíntesis'],x:'Javiera dejó una planta de poroto dentro de un armario oscuro durante 7 días, con riego normal. Sus hojas se pusieron amarillas y dejó de crecer.',q:['¿Qué fase de la fotosíntesis se detuvo primero? ¿Qué reactivo le faltó?','¿Qué productos de esa fase dejaron de formarse?','¿Por qué, aunque tenga CO₂, la fase no luminosa también se detuvo?']},
+ {t:'Hojas sin color verde',c:'#2b9348',ic:'chloro',tags:['Organelo'],x:'En un vivero nació una planta mutante con hojas completamente blancas. Sus células no tienen cloroplastos funcionales ni clorofila. Tiene luz, agua y CO₂.',q:['¿Qué organelo está fallando?','¿Qué no puede captar esta planta? ¿Qué fase se ve afectada?','¿Qué productos de la fase luminosa y de la fase no luminosa no podrá fabricar?']},
+ {t:'Hojas con vaselina',c:'#0b98ab',ic:'stoma',tags:['Estructura'],x:'Un curso cubrió con vaselina la cara inferior de todas las hojas de una planta, que siguió al sol y con riego. Después de unos días la planta se debilitó.',q:['¿Qué estructura de la hoja quedó bloqueada?','¿Qué reactivo de la fase no luminosa no pudo entrar?','¿Qué producto final dejó de fabricarse? ¿Qué gas no pudo salir de la hoja?']},
+ {t:'Sequía en el valle',c:'#1c7ed6',ic:'h2o',tags:['Fotosíntesis'],x:'Durante un verano muy seco en el valle central, unas plantas de maíz se quedaron sin riego. El suelo está seco y las plantas cerraron sus estomas.',q:['¿Qué reactivo de la fase luminosa le falta a la planta?','¿Qué gas dejaría de liberar la planta al aire?','¿Por qué cerrar los estomas también afecta a la fase no luminosa?']},
+ {t:'El atleta sin energía',c:'#e8590c',ic:'mito',tags:['Respiración'],x:'Tomás, de 15 años, se cansa muy rápido al hacer deporte. Un examen muestra que las mitocondrias de sus músculos funcionan mal, aunque come bien y respira normal.',q:['¿Qué organelo está fallando?','¿Qué molécula de energía produce en menor cantidad?','¿En qué fases de la respiración celular (de las 5) se pierde la mayor producción? ¿Qué gas usaría menos?']},
+ {t:'La raíz que no crece',c:'#8a5a2b',ic:'cell',tags:['Organelo','Ambos procesos'],x:'Una planta tiene cloroplastos sanos y sus hojas fabrican glucosa sin problema. Pero sus mitocondrias están dañadas y la raíz dejó de crecer.',q:['¿Qué organelo está fallando?','¿Qué producto de la fase no luminosa se acumula sin poder usarse para obtener energía?','¿Por qué la raíz es la parte más afectada? (Piensa: ¿la raíz tiene luz?)']}
+];
+function renderCases(){ $('#cases').innerHTML=CASES.map((c,i)=>`<article class="case" data-i="${i}" style="--c:${c.c}"><div class="top"><svg viewBox="0 0 64 64" aria-hidden="true">${I[c.ic](c.c)}</svg><div><small>Caso ${i+1} · ${c.tags.join(' · ')}</small><h3>${c.t}</h3></div></div>
+  <div class="bd"><p>${c.x}</p><ol>${c.q.map(q=>`<li>${q}</li>`).join('')}</ol></div></article>`).join(''); }
+renderCases();
+let proj=false,pi=0;
+function setProj(){ $('#casesWrap').classList.toggle('proj',proj); $('#projNav').hidden=!proj; $('#projToggle').textContent=proj?'Ver todos los casos':'Proyectar un caso a la vez';
+  $$('.case').forEach(el=>el.hidden=proj&&+el.dataset.i!==pi); $('#projN').textContent=`${pi+1} / ${CASES.length}`; }
+$('#projToggle').addEventListener('click',()=>{proj=!proj;setProj();});
+$('#projPrev').addEventListener('click',()=>{pi=(pi+CASES.length-1)%CASES.length;setProj();});
+$('#projNext').addEventListener('click',()=>{pi=(pi+1)%CASES.length;setProj();});
+setProj();
+
+/* =========================================================
+   ECOSISTEMA
+   ========================================================= */
+const WORDS=[['luz','Luz solar','#e9a800'],['agua','Agua (H₂O)','#1c7ed6'],['co2','CO₂','#5f6b76'],['o2','O₂','#e03131'],['glu','Glucosa','#c98f00'],['atp','ATP','#6741d9']];
+const BL=[{id:'A',ans:'luz',x:140,y:168},{id:'B',ans:'agua',x:190,y:445},{id:'C',ans:'co2',x:470,y:112},{id:'D',ans:'o2',x:470,y:218},{id:'E',ans:'glu',x:470,y:330},{id:'F',ans:'atp',x:880,y:112}];
+const fill={}; let sel=null;
+(function(){const svg=$('#ecoSvg'); addDefs(svg,`<marker id="arE" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="context-stroke"/></marker>
+  <marker id="arE1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#e9a800"/></marker><marker id="arE2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#1c7ed6"/></marker><marker id="arE3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#5f6b76"/></marker><marker id="arE4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#e03131"/></marker><marker id="arE5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#c98f00"/></marker><marker id="arE6" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#6741d9"/></marker>
+  <linearGradient id="esky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a5d8ff"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient>`);
+  const P={A:'M110 110 C190 120 250 150 290 175',B:'M300 490 C290 460 300 420 300 380',C:'M640 250 C600 120 460 80 370 150',D:'M380 230 C470 250 560 260 630 285',E:'M360 320 C450 360 560 360 640 335',F:'M745 285 C790 250 810 230 830 200'};
+  const col={A:'#e9a800',B:'#1c7ed6',C:'#5f6b76',D:'#e03131',E:'#c98f00',F:'#6741d9'}, mk={A:1,B:2,C:3,D:4,E:5,F:6};
+  let s=`<rect width="960" height="400" fill="url(#esky)"/><rect y="395" width="960" height="125" fill="#8a5a2b"/><rect y="388" width="960" height="16" rx="8" fill="#74b816"/>
+  <path d="M0 400 L120 250 L220 400Z M780 400 L880 230 L960 330 V400Z" fill="#b2c9b8" opacity=".6"/>
+  <g><circle cx="80" cy="80" r="44" fill="#ffd43b"/><g stroke="#fab005" stroke-width="6" stroke-linecap="round">${Array.from({length:10},(_,i)=>`<line x1="80" y1="22" x2="80" y2="10" transform="rotate(${i*36} 80 80)"/>`).join('')}</g></g>
+  <g><rect x="285" y="230" width="30" height="170" rx="6" fill="#7a4a24"/>${[[300,150,70],[250,190,55],[350,190,58],[280,230,48],[335,235,46],[300,200,60]].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#2f9e44" opacity=".92"/>`).join('')}
+   <path d="M300 400 C280 430 250 450 220 470 M300 400 C320 440 350 460 380 480 M300 400 V490" stroke="#e9d8a6" stroke-width="5" fill="none"/>
+   <g transform="translate(250 120)"><rect x="-4" y="-4" width="108" height="30" rx="15" fill="#fff" opacity=".95"/><ellipse cx="18" cy="11" rx="14" ry="9" fill="#6cc36b" stroke="#2b7a3d" stroke-width="2"/><rect x="40" y="3" width="28" height="15" rx="7.5" fill="#ffa94d" stroke="#d9480f" stroke-width="2"/><text x="76" y="16" ${F} font-size="11" font-weight="700" fill="#10231a">x2</text></g>
+   <text x="300" y="515" text-anchor="middle" ${F} font-size="14" font-weight="700" fill="#fff">Coigüe</text></g>
+  <g transform="translate(700 300)"><ellipse cx="0" cy="0" rx="62" ry="32" fill="#8d6e53"/><path d="M-40 20 L-44 95 M-20 24 L-18 95 M26 24 L24 95 M46 18 L50 95" stroke="#6d4c35" stroke-width="10" stroke-linecap="round"/>
+   <path d="M-44 -12 L-72 -58" stroke="#8d6e53" stroke-width="20" stroke-linecap="round"/><ellipse cx="-84" cy="-66" rx="24" ry="14" fill="#8d6e53" transform="rotate(-15 -84 -66)"/><circle cx="-92" cy="-70" r="3" fill="#212529"/>
+   <path d="M-72 -78 l-10 -22 M-70 -78 l6 -24 M-80 -94 l-10 -6 M-66 -94 l8 -6" stroke="#6d4c35" stroke-width="4" stroke-linecap="round"/><ellipse cx="-66" cy="-80" rx="8" ry="4" fill="#6d4c35" transform="rotate(30 -66 -80)"/>
+   <path d="M62 -6 q14 -6 10 10" stroke="#8d6e53" stroke-width="6" fill="none"/>
+   <g transform="translate(-30 -8)"><rect x="-4" y="-4" width="64" height="26" rx="13" fill="#fff" opacity=".95"/><rect x="4" y="2" width="28" height="14" rx="7" fill="#ffa94d" stroke="#d9480f" stroke-width="2"/><text x="36" y="14" ${F} font-size="11" font-weight="700" fill="#10231a">x1</text></g>
+   <text x="0" y="118" text-anchor="middle" ${F} font-size="14" font-weight="700" fill="#fff">Huemul</text></g>
+  ${[[250,470],[340,478],[200,450],[380,455]].map(([x,y])=>`<path d="M${x} ${y-9} C${x+6} ${y-2} ${x+7} ${y+3} ${x} ${y+7} C${x-7} ${y+3} ${x-6} ${y-2} ${x} ${y-9}Z" fill="#4dabf7"/>`).join('')}
+  <g transform="translate(850 170)"><path d="M6 -40 L-16 6 h14 l-8 34 l26 -46 h-14z" fill="#fcc419" stroke="#e67700" stroke-width="2"/></g>
+  <text x="850" y="232" text-anchor="middle" ${F} font-size="12" font-weight="700" fill="#10231a">moverse, crecer</text>
+  <g transform="translate(600 20)"><rect width="340" height="58" rx="12" fill="#fff" opacity=".92"/><ellipse cx="22" cy="18" rx="12" ry="8" fill="#6cc36b" stroke="#2b7a3d" stroke-width="2"/><text x="42" y="23" ${F} font-size="13" font-weight="700" fill="#10231a">cloroplasto: fotosíntesis</text><rect x="10" y="34" width="24" height="13" rx="6.5" fill="#ffa94d" stroke="#d9480f" stroke-width="2"/><text x="42" y="46" ${F} font-size="13" font-weight="700" fill="#10231a">mitocondria: respiración celular</text></g>`;
+  for(const k in P) s+=`<path id="ep${k}" d="${P[k]}" stroke="${col[k]}" stroke-width="6" fill="none" stroke-linecap="round" marker-end="url(#arE${mk[k]})" opacity=".9"/>`;
+  s+=`<g id="ecoParts" style="display:none">${particles([['mPhoton',P.A,2,1.6,[0,.7,1.4]],['mH2O',P.B,2.5,1.2,[0,1.2]],['mCO2',P.C,3,1.2,[0,1,2]],['mO2',P.D,3,1.2,[.5,1.5,2.5]],['mGlu',P.E,3,1.1,[0,1.5]],['mATP',P.F,2,1.1,[0,1]]])}</g>`;
+  s+=BL.map(b=>`<g class="blank" data-b="${b.id}" transform="translate(${b.x} ${b.y})" tabindex="0" role="button" aria-label="Recuadro ${b.id}"><rect x="-58" y="-19" width="116" height="38" rx="10"/><text class="q" text-anchor="middle" y="6">${b.id} · ?</text></g>`).join('');
+  svg.insertAdjacentHTML('beforeend',s);
+})();
+function renderBank(){ $('#bank').innerHTML='<b style="margin-right:4px">Palabras:</b>'+WORDS.map(([id,t,c])=>`<button class="word${Object.values(fill).includes(id)?' used':''}" data-w="${id}" aria-pressed="${sel===id}" style="--c:${c}">${t}</button>`).join(''); }
+function renderBlanks(check){ BL.forEach(b=>{const g=$(`#ecoSvg [data-b="${b.id}"]`); const v=fill[b.id]; const w=WORDS.find(x=>x[0]===v);
+  const txt=$('text',g); txt.textContent=w?w[1]:b.id+' · ?'; txt.setAttribute('class',w?'':'q'); g.classList.toggle('filled',!!w); g.classList.remove('ok','bad'); if(check&&w) g.classList.add(v===b.ans?'ok':'bad');});
+  $('#ecoMsg').textContent=`${Object.keys(fill).length} de 6 completados`; }
+$('#bank').addEventListener('click',e=>{const b=e.target.closest('[data-w]'); if(!b) return; sel=sel===b.dataset.w?null:b.dataset.w; renderBank();});
+function placeAt(id){ if(sel){ for(const k in fill) if(fill[k]===sel) delete fill[k]; fill[id]=sel; sel=null; } else if(fill[id]) delete fill[id]; renderBank(); renderBlanks(false); }
+$('#ecoSvg').addEventListener('click',e=>{const g=e.target.closest('.blank'); if(g) placeAt(g.dataset.b);});
+$('#ecoSvg').addEventListener('keydown',e=>{const g=e.target.closest('.blank'); if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();placeAt(g.dataset.b);}});
+$('#ecoCheck').addEventListener('click',()=>{renderBlanks(true); const ok=BL.filter(b=>fill[b.id]===b.ans).length; $('#ecoMsg').textContent=ok===6?'¡Excelente! 6 de 6 correctos. Ahora anima el ciclo.':`${ok} de 6 correctos. Corrige los recuadros en rojo.`;});
+$('#ecoReset').addEventListener('click',()=>{for(const k in fill) delete fill[k]; sel=null; renderBank(); renderBlanks(false);});
+$('#ecoAnim').addEventListener('click',()=>{const g=$('#ecoParts'); const on=g.style.display==='none'; g.style.display=on?'':'none'; $('#ecoAnim').textContent=on?'■ Detener animación':'▶ Animar el ciclo';});
+renderBank(); renderBlanks(false);
+
+if(reduced){ $$('svg').forEach(s=>{try{s.pauseAnimations();}catch(e){}}); }
+showTab((location.hash||'#explorador').slice(1),false);
+})();
+</script>
